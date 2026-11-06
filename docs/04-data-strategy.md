@@ -132,3 +132,45 @@ O dataset é CC-BY-4.0: dar crédito a M-Arjun, linkar a licença e indicar tran
 O modelo é binário; categorias finas servem apenas para mostrar composição, não como
 targets de inferência. Como os registros são SMS, resultados não estimam desempenho em
 e-mails ou na caixa Gmail.
+
+## Corpora de e-mail e categorias genéricas (2026-11-05)
+
+Contrato público separado `public_email`, preparado de Enron-Spam (espelho CSV
+documentado de MWiechmann quando a origem está indisponível) e SpamAssassin bruto.
+Somente métricas agregadas podem ser publicadas; dados e modelos ficam ignorados.
+Hashes, origens e limites de direitos estão em [13](13-messages-email.md).
+SpamAssassin é externo reservado. Grupos exatos/template/conversas são formados
+antes da divisão; sobreposição Enron/externo é removida do Enron. O restante tem
+split aproximado 70/15/15 de grupos por assinatura de classe, seed 42. Heurísticas
+não garantem isolamento de todas as paráfrases.
+
+O contrato temático independe do corpus de spam. `email_reviewed` identifica revisão
+humana de mensagens de qualquer provedor; preparação exige as mesmas confirmações
+humanas/privacidade. Cobertura temática parcial é permitida explicitamente nesse novo
+contrato, com classes treinadas e ausentes relatadas; o fluxo Gmail humano anterior
+mantém cobertura integral. `email_ai_labeled` exige opt-in separado e não é revisão humana.
+Nova rotulagem de IA não foi realizada. A amostra de 180 legítimos tem temas pendentes.
+
+## Kaggle isuranga (2026-11-05)
+
+`isuranga/spam-genuine-mail-contents-dataset`: 100 mil e-mails sintéticos segundo o
+autor, versão 1, licença declarada Apache 2.0. Features limitadas a assunto/corpo;
+excluir score antispam e metadados correlatos. IDs/referências só para agrupamento,
+idioma só para métricas. Após deduplicação: 95.109 textos, 6.301 componentes.
+70/15/15 de grupos, com concentração de mensagens no treino por dois grupos gigantes.
+O contrato declara `training_source: kaggle_isuranga`, sem split externo interno;
+diagnóstico externo separado. Dados/modelos ignorados. [Registro](experiments/kaggle-isuranga-v1.md).
+
+## Desenvolvimento real v2 e autorização ampla (2026-11-05)
+
+O usuário autorizou seguir o roteiro com autonomia. Os rótulos temáticos de IA são
+`email_ai_labeled`, com motivos e exclusões privados, sem flags humanas. A amostra
+teve 159 exemplos de desenvolvimento anotados antes do congelamento e 21 reservados
+anotados depois (18 avaliáveis). O lote Gmail AI anterior mantém sua procedência.
+Desenvolvimento temático: 194 registros, nove categorias; não é referência humana.
+
+Enron e SpamAssassin anteriores agora são desenvolvimento já observado: 34.754
+mensagens após quarentena de 180 grupos/965 exemplos da amostra temática. Splits por
+grupo/fonte/classe. Coleta nova de 100 mensagens após congelamento, cinco sobreposições
+detectadas, sem rótulos humanos ou fit. Artefatos e coletas permanecem privados.
+[Contrato, hashes e revisão](14-real-development.md).

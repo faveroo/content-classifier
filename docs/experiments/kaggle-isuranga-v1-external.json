@@ -1,0 +1,174 @@
+{
+  "source": "external_email_diagnostic",
+  "model_provenance": {
+    "spam_source": "isuranga/spam-genuine-mail-contents-dataset",
+    "category_source": "synthetic",
+    "human_gold_labels": false
+  },
+  "dataset_sha256": "ef792cb7a40a5c5ba7ff37a5ef4a0298a94a60f8df7e09ef9f4a2f056a227359",
+  "training_dataset_sha256": "71c64e465452de07c04fcbeaf9c5683475c82418bbef3ba099ddef3fe585b0a0",
+  "model_sha256": "6c3b0f63e6656f3ff08687c421d2155bd53e4b6eec6fabcd4af9b972643813cf",
+  "warning": "Reused historical external corpus; no fitting, calibration or parameter selection. Overlap filtering is heuristic. No thematic category evaluation.",
+  "input_count": 5915,
+  "overlapping_groups_removed": 0,
+  "overlapping_rows_removed": 0,
+  "at_0_5": {
+    "count": 5915,
+    "threshold": 0.5,
+    "accuracy": 0.6843617920540997,
+    "labels": [
+      "ham",
+      "spam"
+    ],
+    "confusion_matrix": [
+      [
+        2834,
+        1274
+      ],
+      [
+        593,
+        1214
+      ]
+    ],
+    "false_positives": 1274,
+    "false_negatives": 593,
+    "false_positive_rate": 0.310126582278481,
+    "spam_precision": 0.4879421221864952,
+    "spam_recall": 0.6718317653569452,
+    "classification_report": {
+      "ham": {
+        "precision": 0.8269623577473009,
+        "recall": 0.689873417721519,
+        "f1-score": 0.7522229595222296,
+        "support": 4108.0
+      },
+      "spam": {
+        "precision": 0.4879421221864952,
+        "recall": 0.6718317653569452,
+        "f1-score": 0.5653084982537835,
+        "support": 1807.0
+      },
+      "accuracy": 0.6843617920540997,
+      "macro avg": {
+        "precision": 0.657452239966898,
+        "recall": 0.680852591539232,
+        "f1-score": 0.6587657288880066,
+        "support": 5915.0
+      },
+      "weighted avg": {
+        "precision": 0.7233935385320217,
+        "recall": 0.6843617920540997,
+        "f1-score": 0.6951216186072537,
+        "support": 5915.0
+      }
+    }
+  },
+  "at_policy": {
+    "count": 5915,
+    "threshold": 0.9,
+    "accuracy": 0.7325443786982249,
+    "labels": [
+      "ham",
+      "spam"
+    ],
+    "confusion_matrix": [
+      [
+        3941,
+        167
+      ],
+      [
+        1415,
+        392
+      ]
+    ],
+    "false_positives": 167,
+    "false_negatives": 1415,
+    "false_positive_rate": 0.04065238558909445,
+    "spam_precision": 0.7012522361359571,
+    "spam_recall": 0.21693414499169894,
+    "classification_report": {
+      "ham": {
+        "precision": 0.7358103061986557,
+        "recall": 0.9593476144109055,
+        "f1-score": 0.8328402366863905,
+        "support": 4108.0
+      },
+      "spam": {
+        "precision": 0.7012522361359571,
+        "recall": 0.21693414499169894,
+        "f1-score": 0.33136094674556216,
+        "support": 1807.0
+      },
+      "accuracy": 0.7325443786982249,
+      "macro avg": {
+        "precision": 0.7185312711673064,
+        "recall": 0.5881408797013022,
+        "f1-score": 0.5821005917159763,
+        "support": 5915.0
+      },
+      "weighted avg": {
+        "precision": 0.7252530056740071,
+        "recall": 0.7325443786982249,
+        "f1-score": 0.6796410689901815,
+        "support": 5915.0
+      }
+    }
+  },
+  "email_reference_at_0_5": {
+    "count": 5915,
+    "threshold": 0.5,
+    "accuracy": 0.4466610312764159,
+    "labels": [
+      "ham",
+      "spam"
+    ],
+    "confusion_matrix": [
+      [
+        854,
+        3254
+      ],
+      [
+        19,
+        1788
+      ]
+    ],
+    "false_positives": 3254,
+    "false_negatives": 19,
+    "false_positive_rate": 0.7921129503407984,
+    "spam_precision": 0.3546211820706069,
+    "spam_recall": 0.9894853348090759,
+    "classification_report": {
+      "ham": {
+        "precision": 0.9782359679266895,
+        "recall": 0.20788704965920154,
+        "f1-score": 0.34290303151977514,
+        "support": 4108.0
+      },
+      "spam": {
+        "precision": 0.3546211820706069,
+        "recall": 0.9894853348090759,
+        "f1-score": 0.522120017520806,
+        "support": 1807.0
+      },
+      "accuracy": 0.4466610312764159,
+      "macro avg": {
+        "precision": 0.6664285749986483,
+        "recall": 0.5986861922341387,
+        "f1-score": 0.4325115245202905,
+        "support": 5915.0
+      },
+      "weighted avg": {
+        "precision": 0.7877250773025236,
+        "recall": 0.4466610312764159,
+        "f1-score": 0.3976528360343758,
+        "support": 5915.0
+      }
+    }
+  },
+  "execution_date": "2026-11-05",
+  "environment": {
+    "python": "3.13.14",
+    "scikit_learn": "1.9.1"
+  },
+  "always_ham_accuracy_reference": 0.6945054945054945
+}

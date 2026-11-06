@@ -9,6 +9,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 from .private_storage import private_path, write_private_json
+from .text_privacy import redact
 
 
 READONLY_SCOPE = "https://www.googleapis.com/auth/gmail.readonly"
@@ -46,7 +47,14 @@ def authenticate(credentials_path: Path, token_path: Path, *, interactive=False)
                 raise GmailError("Token must grant only gmail.readonly; use a separate read-only OAuth client")
             credentials = Credentials.from_authorized_user_info(data, SCOPES)
             if credentials.expired and credentials.refresh_token:
-                credentials.refresh(Request())
+                try:
+                    credentials.refresh(Request())
+                except Exception:
+                    if not interactive:
+                        raise GmailError("Read-only token refresh failed; run gmail-auth to renew browser consent") from None
+                    # Only the explicit auth command may replace an expired/revoked grant.
+                    # Keep the previous token file untouched until new scopes are verified.
+                    credentials = None
         if credentials is None or not credentials.valid:
             if not interactive:
                 raise GmailError("Authenticate first with gmail-auth")
@@ -133,14 +141,6 @@ def _body_text(part: dict) -> str:
         parser.feed(text)
         text = " ".join(parser.text)
     return text
-
-
-def redact(text: str) -> str:
-    """Best-effort minimization, NOT anonymization. Human privacy review is required."""
-    text = re.sub(r"(?i)\b(?:https?://|www\.)\S+", " [URL] ", text)
-    text = re.sub(r"[\w.+-]+@[\w.-]+\.[\w-]+", " [EMAIL] ", text)
-    text = re.sub(r"(?<!\w)\+?\d[\d\s()./-]{5,}\d(?!\w)", " [NUMERO] ", text)
-    return " ".join(text.split())[:MAX_TEXT]
 
 
 def collect(service, *, query: str, limit=50, include_spam=False) -> dict:

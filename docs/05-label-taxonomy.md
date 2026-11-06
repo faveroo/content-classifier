@@ -35,3 +35,8 @@ Versão operacional para exemplos sintéticos; validar utilidade com dados autor
 
 `IA/SPAM`, `IA/Revisar` e `IA/<Categoria>` com a grafia exata da tabela.
 A CLI apenas sugere labels. Nenhuma ação é executada no Gmail.
+
+Na experiência real-v2, a taxonomia v1 foi mantida. Exemplos ambíguos são excluídos
+da anotação experimental, sem usar Outros como atalho. Nove classes aparecem no
+treino, mas Financeiro e Pessoal não são avaliados no pequeno teste reservado.
+Baixa concordância impede aceitação automática temática; hipóteses continuam em revisão.

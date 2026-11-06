@@ -14,6 +14,51 @@ from .gmail import GmailError
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Email baseline and read-only Gmail sampling")
     commands = parser.add_subparsers(dest="command", required=True)
+    kaggle_download = commands.add_parser("download-kaggle-mail", help="Download the public isuranga Kaggle email corpus")
+    kaggle_download.add_argument("--directory", type=Path, default=Path("data/kaggle-isuranga"))
+    kaggle_prepare = commands.add_parser("prepare-kaggle-mail", help="Prepare a grouped synthetic-mail experiment without score/metadata leakage")
+    kaggle_prepare.add_argument("--directory", type=Path, default=Path("data/kaggle-isuranga"))
+    kaggle_prepare.add_argument("--output", type=Path, default=Path("data/kaggle-isuranga/prepared-v1.json"))
+    kaggle_prepare.add_argument("--reference-dataset", type=Path, help="Audit overlap against a prior public dataset train split")
+    external_eval = commands.add_parser("evaluate-email-external", help="Evaluate a trained detector on a prior external corpus without fitting")
+    external_eval.add_argument("--model", type=Path, required=True)
+    external_eval.add_argument("--dataset", type=Path, required=True)
+    external_eval.add_argument("--training-dataset", type=Path, required=True)
+    external_eval.add_argument("--reference-model", type=Path)
+    external_eval.add_argument("--report", type=Path, required=True)
+    public_download = commands.add_parser("download-email-data", help="Download public Enron-Spam and SpamAssassin archives")
+    public_download.add_argument("--directory", type=Path, default=Path("data/email/archives"))
+    public_prepare = commands.add_parser("prepare-email-data", help="Group mail templates and reserve an external corpus")
+    public_prepare.add_argument("--directory", type=Path, default=Path("data/email/archives"))
+    public_prepare.add_argument("--output", type=Path, default=Path("data/email/public-v1.json"))
+    messages_train = commands.add_parser("train-messages", help="Train independent email spam and thematic category stages")
+    messages_train.add_argument("--dataset", type=Path, default=Path("data/email/public-v1.json"))
+    messages_train.add_argument("--category-dataset", type=Path, required=True)
+    messages_train.add_argument("--model", type=Path, default=Path("models/messages-v1.joblib"))
+    messages_train.add_argument("--report", type=Path, default=Path("reports/messages-v1.json"))
+    messages_train.add_argument("--allow-private", action="store_true")
+    messages_train.add_argument("--allow-ai-labels", action="store_true")
+    messages_train.add_argument("--sms-reference", type=Path)
+    messages_train.add_argument("--email-reference", type=Path)
+    importer = commands.add_parser("import-messages", help="Import offline .eml/.mbox/.txt for private review")
+    importer.add_argument("--input", type=Path, required=True)
+    importer.add_argument("--output", type=Path, required=True)
+    category_sample = commands.add_parser("sample-email-categories", help="Prepare unlabelled public emails for private human review")
+    category_sample.add_argument("--dataset", type=Path, default=Path("data/email/public-v1.json"))
+    category_sample.add_argument("--output", type=Path, default=private_home() / "email-category-review.json")
+    category_sample.add_argument("--limit", type=int, default=180)
+    classifier = commands.add_parser("classify", help="Offline spam and thematic classification; no mailbox connection")
+    model_choice = classifier.add_mutually_exclusive_group(required=True)
+    model_choice.add_argument("--model", type=Path)
+    model_choice.add_argument("--active", action="store_true", help="Use the frozen private experiment in review-only mode")
+    message_input = classifier.add_mutually_exclusive_group(required=True)
+    message_input.add_argument("--input", type=Path, help=".eml, .mbox, .txt or a directory of .eml")
+    message_input.add_argument("--text", help="For public examples; use --input or --stdin for private text")
+    message_input.add_argument("--stdin", action="store_true")
+    classifier.add_argument("--subject", default="")
+    classifier.add_argument("--channel", choices=("email", "message"), default="email",
+                            help="Use the email detector or the separately trained SMS detector")
+    classifier.add_argument("--sms-model", type=Path, default=Path("models/spamshield-multilingual.joblib"))
     training = commands.add_parser("train")
     training.add_argument("--dataset", type=Path, required=True)
     training.add_argument("--model", type=Path, default=Path("models/baseline.joblib"))
@@ -58,7 +103,82 @@ def main(argv=None):
     simulation.add_argument("--output", type=Path, default=private_home() / "predictions.json")
     args = parser.parse_args(argv)
     try:
-        if args.command == "train":
+        if args.command == "download-kaggle-mail":
+            from .kaggle_mail import download_dataset
+            print(json.dumps(download_dataset(args.directory)))
+        elif args.command == "prepare-kaggle-mail":
+            from .kaggle_mail import prepare_dataset
+            print(json.dumps(prepare_dataset(args.directory, args.output, reference_dataset=args.reference_dataset)))
+        elif args.command == "evaluate-email-external":
+            from .message_model import evaluate_external
+            protected = {args.model.resolve(), args.dataset.resolve(), args.training_dataset.resolve()}
+            if args.reference_model:
+                protected.add(args.reference_model.resolve())
+            if args.report.resolve() in protected:
+                raise ValueError("Diagnostic report must not overwrite inputs")
+            provenance = load_model(args.model).provenance or {}
+            if provenance.get("category_source") != "synthetic":
+                private_path(args.report)
+            report = evaluate_external(args.model, args.dataset, args.training_dataset,
+                                       reference_model=args.reference_model)
+            args.report.parent.mkdir(parents=True, exist_ok=True)
+            args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+            print(json.dumps({"report": str(args.report), "count": report["at_0_5"]["count"]}))
+        elif args.command == "download-email-data":
+            from .email_corpora import download_corpora
+            manifest = download_corpora(args.directory)
+            print(json.dumps({"archives": len(manifest)}))
+        elif args.command == "prepare-email-data":
+            from .email_corpora import prepare_corpora
+            print(json.dumps(prepare_corpora(args.directory, args.output)))
+        elif args.command == "train-messages":
+            from .message_model import train_messages
+            report = train_messages(args.dataset, args.category_dataset, args.model, args.report,
+                allow_private=args.allow_private, allow_ai=args.allow_ai_labels, sms_reference=args.sms_reference,
+                email_reference=args.email_reference)
+            print(json.dumps({"model": str(args.model), "report": str(args.report),
+                "category_source": report["model_provenance"]["category_source"],
+                "category_warning": report["category_warning"]}))
+        elif args.command == "import-messages":
+            from .message_model import import_for_review
+            print(json.dumps({"imported": import_for_review(args.input, args.output), "mailbox_changes": 0}))
+        elif args.command == "sample-email-categories":
+            from .message_model import category_review_sample
+            print(json.dumps({"prepared_for_review": category_review_sample(args.dataset, args.output, args.limit)}))
+        elif args.command == "classify":
+            from .mail_input import iter_messages, MAX_TEXT
+            import sys
+            if args.input:
+                messages = iter_messages(args.input)
+            else:
+                body = sys.stdin.read(MAX_TEXT + 1) if args.stdin else args.text
+                if len(body) > MAX_TEXT:
+                    raise ValueError("Text exceeds 20,000 characters")
+                messages = [{"subject": args.subject, "body": body}]
+            active_config = None
+            if args.active:
+                from .active_model import active_configuration
+                active_config = active_configuration()
+                args.model = active_config["model"]
+            model = load_model(args.model)
+            if args.channel == "message":
+                from .spamshield import load_spamshield_model
+                from .baseline import Baseline
+                model = Baseline(load_spamshield_model(args.sms_model), model.category,
+                                 Policy(category_threshold=model.policy.category_threshold),
+                                 {**(model.provenance or {}), "spam_source": "M-Arjun/SpamShield-Datasets"})
+            count = 0
+            from .message_model import classify_message
+            for count, message in enumerate(messages, start=1):
+                result = classify_message(model, **message, conditional_topic=bool(active_config and active_config.get("review_only")))
+                if active_config:
+                    from .active_model import require_review
+                    result = require_review(result, active_config)
+                print(json.dumps({"index": count, **result,
+                                  "channel": args.channel, "model_provenance": model.provenance}, ensure_ascii=False))
+            if not count:
+                raise ValueError("No messages found")
+        elif args.command == "train":
             if args.allow_private:
                 # Reject default in-checkout model/report paths before reading private input.
                 private_path(args.dataset)
@@ -113,7 +233,7 @@ def main(argv=None):
         elif args.command == "prepare-dataset":
             from .review import prepare_dataset
             rows = prepare_dataset(args.input, args.output)
-            print(json.dumps({"prepared": len(rows), "source": "gmail_reviewed"}))
+            print(json.dumps({"prepared": len(rows), "source": rows[0]["source"]}))
         elif args.command == "review":
             from .review_ui import serve
             serve(args.input, port=args.port, open_browser=not args.no_browser)

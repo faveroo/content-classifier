@@ -1,0 +1,1292 @@
+{
+  "format_version": 1,
+  "source": "public_email",
+  "sklearn_version": "1.9.1",
+  "dataset_sha256": "ef792cb7a40a5c5ba7ff37a5ef4a0298a94a60f8df7e09ef9f4a2f056a227359",
+  "category_dataset_sha256": "7eac9bc8aac9299dde199b9038a8c7252845f48e515f17cd0df09bd3c590913d",
+  "model_provenance": {
+    "spam_source": "Enron-Spam",
+    "category_source": "synthetic",
+    "human_gold_labels": false
+  },
+  "policy": {
+    "spam_threshold": 0.9,
+    "legitimate_threshold": 0.2,
+    "category_threshold": 0.6
+  },
+  "seed": 42,
+  "preparation": {
+    "format_version": 1,
+    "source": "public_email",
+    "seed": 42,
+    "input_count": 39711,
+    "parsing_skipped": 51,
+    "preparation": {
+      "exact_duplicates_removed": 3522,
+      "enron_overlap_with_external_removed": 470
+    },
+    "archives": [
+      {
+        "file": "20030228_easy_ham.tar.bz2",
+        "sha256": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438"
+      },
+      {
+        "file": "20030228_easy_ham_2.tar.bz2",
+        "sha256": "b4bd3dc5ae5b40f38e99a0e41ad7d16b428b56e818e3a6ffa07330d62004dd38"
+      },
+      {
+        "file": "20030228_hard_ham.tar.bz2",
+        "sha256": "ce2ce67880643dbde65ea7f85bffbfe4417349c4bd80b6b0de56262ae6b0a9c9"
+      },
+      {
+        "file": "20030228_spam.tar.bz2",
+        "sha256": "c08debc32413804949a866be45ef78195cec2cbafd1da744ed76cdb860589743"
+      },
+      {
+        "file": "20050311_spam_2.tar.bz2",
+        "sha256": "44280a0e28bf7645b2279e8e42659271ad82c6f40bf8d364dbda7f1df344a765"
+      },
+      {
+        "file": "enron_spam_data.zip",
+        "sha256": "e994ad3c09fd7528b397e1f921742da5dd59f19695bc25cdb3617eb3ded17634"
+      }
+    ]
+  },
+  "warning": "Historical mostly English email; not current multilingual production validation. Exact/template grouping cannot identify all paraphrases.",
+  "category_warning": "Synthetic smoke test; not real-world category quality",
+  "spam": {
+    "train": {
+      "at_0_5": {
+        "count": 20809,
+        "threshold": 0.5,
+        "accuracy": 0.9914940650679994,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            10731,
+            165
+          ],
+          [
+            12,
+            9901
+          ]
+        ],
+        "false_positives": 165,
+        "false_negatives": 12,
+        "false_positive_rate": 0.0151431718061674,
+        "spam_precision": 0.9836081859725809,
+        "spam_recall": 0.9987894683748613,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9988829935772131,
+            "recall": 0.9848568281938326,
+            "f1-score": 0.991820324414252,
+            "support": 10896.0
+          },
+          "spam": {
+            "precision": 0.9836081859725809,
+            "recall": 0.9987894683748613,
+            "f1-score": 0.9911406977326193,
+            "support": 9913.0
+          },
+          "accuracy": 0.9914940650679994,
+          "macro avg": {
+            "precision": 0.9912455897748971,
+            "recall": 0.9918231482843469,
+            "f1-score": 0.9914805110734357,
+            "support": 20809.0
+          },
+          "weighted avg": {
+            "precision": 0.9916063744323854,
+            "recall": 0.9914940650679994,
+            "f1-score": 0.991496563575431,
+            "support": 20809.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 20809,
+        "threshold": 0.9,
+        "accuracy": 0.7941755970974098,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            10895,
+            1
+          ],
+          [
+            4282,
+            5631
+          ]
+        ],
+        "false_positives": 1,
+        "false_negatives": 4282,
+        "false_positive_rate": 9.177679882525697e-05,
+        "spam_precision": 0.9998224431818182,
+        "spam_recall": 0.5680419650963382,
+        "classification_report": {
+          "ham": {
+            "precision": 0.7178625551821836,
+            "recall": 0.9999082232011748,
+            "f1-score": 0.8357304491236145,
+            "support": 10896.0
+          },
+          "spam": {
+            "precision": 0.9998224431818182,
+            "recall": 0.5680419650963382,
+            "f1-score": 0.7244773238983596,
+            "support": 9913.0
+          },
+          "accuracy": 0.7941755970974098,
+          "macro avg": {
+            "precision": 0.858842499182001,
+            "recall": 0.7839750941487564,
+            "f1-score": 0.780103886510987,
+            "support": 20809.0
+          },
+          "weighted avg": {
+            "precision": 0.8521827228855994,
+            "recall": 0.7941755970974098,
+            "f1-score": 0.782731639456742,
+            "support": 20809.0
+          }
+        }
+      },
+      "group_count": 16764,
+      "distribution": {
+        "ham": 10896,
+        "spam": 9913
+      }
+    },
+    "validation": {
+      "at_0_5": {
+        "count": 4748,
+        "threshold": 0.5,
+        "accuracy": 0.9854675652906487,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2480,
+            61
+          ],
+          [
+            8,
+            2199
+          ]
+        ],
+        "false_positives": 61,
+        "false_negatives": 8,
+        "false_positive_rate": 0.024006296733569462,
+        "spam_precision": 0.9730088495575221,
+        "spam_recall": 0.9963751699139103,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9967845659163987,
+            "recall": 0.9759937032664305,
+            "f1-score": 0.9862795784450189,
+            "support": 2541.0
+          },
+          "spam": {
+            "precision": 0.9730088495575221,
+            "recall": 0.9963751699139103,
+            "f1-score": 0.984553391537945,
+            "support": 2207.0
+          },
+          "accuracy": 0.9854675652906487,
+          "macro avg": {
+            "precision": 0.9848967077369604,
+            "recall": 0.9861844365901704,
+            "f1-score": 0.9854164849914819,
+            "support": 4748.0
+          },
+          "weighted avg": {
+            "precision": 0.9857329639778897,
+            "recall": 0.9854675652906487,
+            "f1-score": 0.985477199653125,
+            "support": 4748.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 4748,
+        "threshold": 0.9,
+        "accuracy": 0.8260320134793597,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2538,
+            3
+          ],
+          [
+            823,
+            1384
+          ]
+        ],
+        "false_positives": 3,
+        "false_negatives": 823,
+        "false_positive_rate": 0.0011806375442739079,
+        "spam_precision": 0.9978370583994232,
+        "spam_recall": 0.6270956048935206,
+        "classification_report": {
+          "ham": {
+            "precision": 0.7551324010711098,
+            "recall": 0.9988193624557261,
+            "f1-score": 0.8600474415452389,
+            "support": 2541.0
+          },
+          "spam": {
+            "precision": 0.9978370583994232,
+            "recall": 0.6270956048935206,
+            "f1-score": 0.770172509738453,
+            "support": 2207.0
+          },
+          "accuracy": 0.8260320134793597,
+          "macro avg": {
+            "precision": 0.8764847297352665,
+            "recall": 0.8129574836746234,
+            "f1-score": 0.815109975641846,
+            "support": 4748.0
+          },
+          "weighted avg": {
+            "precision": 0.8679481505916633,
+            "recall": 0.8260320134793597,
+            "f1-score": 0.8182711200419583,
+            "support": 4748.0
+          }
+        }
+      },
+      "group_count": 3592,
+      "distribution": {
+        "ham": 2541,
+        "spam": 2207
+      },
+      "sms_reference_at_0_5": {
+        "count": 4748,
+        "threshold": 0.5,
+        "accuracy": 0.9888374052232519,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2522,
+            19
+          ],
+          [
+            34,
+            2173
+          ]
+        ],
+        "false_positives": 19,
+        "false_negatives": 34,
+        "false_positive_rate": 0.00747737111373475,
+        "spam_precision": 0.9913321167883211,
+        "spam_recall": 0.9845944721341187,
+        "classification_report": {
+          "ham": {
+            "precision": 0.986697965571205,
+            "recall": 0.9925226288862653,
+            "f1-score": 0.9896017265057877,
+            "support": 2541.0
+          },
+          "spam": {
+            "precision": 0.9913321167883211,
+            "recall": 0.9845944721341187,
+            "f1-score": 0.9879518072289156,
+            "support": 2207.0
+          },
+          "accuracy": 0.9888374052232519,
+          "macro avg": {
+            "precision": 0.9890150411797631,
+            "recall": 0.9885585505101919,
+            "f1-score": 0.9887767668673517,
+            "support": 4748.0
+          },
+          "weighted avg": {
+            "precision": 0.9888520455493379,
+            "recall": 0.9888374052232519,
+            "f1-score": 0.9888347989901902,
+            "support": 4748.0
+          }
+        }
+      }
+    },
+    "test": {
+      "at_0_5": {
+        "count": 4247,
+        "threshold": 0.5,
+        "accuracy": 0.9811631740051802,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2087,
+            66
+          ],
+          [
+            14,
+            2080
+          ]
+        ],
+        "false_positives": 66,
+        "false_negatives": 14,
+        "false_positive_rate": 0.030654900139340455,
+        "spam_precision": 0.9692451071761417,
+        "spam_recall": 0.9933142311365807,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9933365064255116,
+            "recall": 0.9693450998606595,
+            "f1-score": 0.9811941701927598,
+            "support": 2153.0
+          },
+          "spam": {
+            "precision": 0.9692451071761417,
+            "recall": 0.9933142311365807,
+            "f1-score": 0.9811320754716981,
+            "support": 2094.0
+          },
+          "accuracy": 0.9811631740051802,
+          "macro avg": {
+            "precision": 0.9812908068008266,
+            "recall": 0.9813296654986201,
+            "f1-score": 0.981163122832229,
+            "support": 4247.0
+          },
+          "weighted avg": {
+            "precision": 0.981458147577341,
+            "recall": 0.9811631740051802,
+            "f1-score": 0.9811635541471033,
+            "support": 4247.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 4247,
+        "threshold": 0.9,
+        "accuracy": 0.8099835177772545,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2152,
+            1
+          ],
+          [
+            806,
+            1288
+          ]
+        ],
+        "false_positives": 1,
+        "false_negatives": 806,
+        "false_positive_rate": 0.00046446818392940084,
+        "spam_precision": 0.9992242048099301,
+        "spam_recall": 0.6150907354345749,
+        "classification_report": {
+          "ham": {
+            "precision": 0.7275185936443543,
+            "recall": 0.9995355318160706,
+            "f1-score": 0.8421052631578947,
+            "support": 2153.0
+          },
+          "spam": {
+            "precision": 0.9992242048099301,
+            "recall": 0.6150907354345749,
+            "f1-score": 0.7614543304759089,
+            "support": 2094.0
+          },
+          "accuracy": 0.8099835177772545,
+          "macro avg": {
+            "precision": 0.8633713992271422,
+            "recall": 0.8073131336253228,
+            "f1-score": 0.8017797968169018,
+            "support": 4247.0
+          },
+          "weighted avg": {
+            "precision": 0.8614841104281349,
+            "recall": 0.8099835177772545,
+            "f1-score": 0.802340004613963,
+            "support": 4247.0
+          }
+        }
+      },
+      "group_count": 3592,
+      "distribution": {
+        "ham": 2153,
+        "spam": 2094
+      },
+      "sms_reference_at_0_5": {
+        "count": 4247,
+        "threshold": 0.5,
+        "accuracy": 0.9889333647280433,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2137,
+            16
+          ],
+          [
+            31,
+            2063
+          ]
+        ],
+        "false_positives": 16,
+        "false_negatives": 31,
+        "false_positive_rate": 0.0074314909428704135,
+        "spam_precision": 0.9923039923039924,
+        "spam_recall": 0.9851957975167144,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9857011070110702,
+            "recall": 0.9925685090571296,
+            "f1-score": 0.9891228882203194,
+            "support": 2153.0
+          },
+          "spam": {
+            "precision": 0.9923039923039924,
+            "recall": 0.9851957975167144,
+            "f1-score": 0.9887371195782411,
+            "support": 2094.0
+          },
+          "accuracy": 0.9889333647280433,
+          "macro avg": {
+            "precision": 0.9890025496575312,
+            "recall": 0.988882153286922,
+            "f1-score": 0.9889300038992802,
+            "support": 4247.0
+          },
+          "weighted avg": {
+            "precision": 0.9889566854907922,
+            "recall": 0.9889333647280433,
+            "f1-score": 0.9889326834789697,
+            "support": 4247.0
+          }
+        }
+      }
+    },
+    "external": {
+      "at_0_5": {
+        "count": 5915,
+        "threshold": 0.5,
+        "accuracy": 0.4466610312764159,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            854,
+            3254
+          ],
+          [
+            19,
+            1788
+          ]
+        ],
+        "false_positives": 3254,
+        "false_negatives": 19,
+        "false_positive_rate": 0.7921129503407984,
+        "spam_precision": 0.3546211820706069,
+        "spam_recall": 0.9894853348090759,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9782359679266895,
+            "recall": 0.20788704965920154,
+            "f1-score": 0.34290303151977514,
+            "support": 4108.0
+          },
+          "spam": {
+            "precision": 0.3546211820706069,
+            "recall": 0.9894853348090759,
+            "f1-score": 0.522120017520806,
+            "support": 1807.0
+          },
+          "accuracy": 0.4466610312764159,
+          "macro avg": {
+            "precision": 0.6664285749986483,
+            "recall": 0.5986861922341387,
+            "f1-score": 0.4325115245202905,
+            "support": 5915.0
+          },
+          "weighted avg": {
+            "precision": 0.7877250773025236,
+            "recall": 0.4466610312764159,
+            "f1-score": 0.3976528360343758,
+            "support": 5915.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 5915,
+        "threshold": 0.9,
+        "accuracy": 0.8730346576500423,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            3987,
+            121
+          ],
+          [
+            630,
+            1177
+          ]
+        ],
+        "false_positives": 121,
+        "false_negatives": 630,
+        "false_positive_rate": 0.029454722492697177,
+        "spam_precision": 0.9067796610169492,
+        "spam_recall": 0.6513558384061982,
+        "classification_report": {
+          "ham": {
+            "precision": 0.8635477582846004,
+            "recall": 0.9705452775073028,
+            "f1-score": 0.9139255014326647,
+            "support": 4108.0
+          },
+          "spam": {
+            "precision": 0.9067796610169492,
+            "recall": 0.6513558384061982,
+            "f1-score": 0.7581320450885668,
+            "support": 1807.0
+          },
+          "accuracy": 0.8730346576500423,
+          "macro avg": {
+            "precision": 0.8851637096507747,
+            "recall": 0.8109505579567504,
+            "f1-score": 0.8360287732606158,
+            "support": 5915.0
+          },
+          "weighted avg": {
+            "precision": 0.8767548670314059,
+            "recall": 0.8730346576500423,
+            "f1-score": 0.8663314565275446,
+            "support": 5915.0
+          }
+        }
+      },
+      "group_count": 3928,
+      "distribution": {
+        "ham": 4108,
+        "spam": 1807
+      },
+      "sms_reference_at_0_5": {
+        "count": 5915,
+        "threshold": 0.5,
+        "accuracy": 0.4461538461538462,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            865,
+            3243
+          ],
+          [
+            33,
+            1774
+          ]
+        ],
+        "false_positives": 3243,
+        "false_negatives": 33,
+        "false_positive_rate": 0.7894352482960078,
+        "spam_precision": 0.35359776759019335,
+        "spam_recall": 0.981737686773658,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9632516703786191,
+            "recall": 0.21056475170399222,
+            "f1-score": 0.3455852976428286,
+            "support": 4108.0
+          },
+          "spam": {
+            "precision": 0.35359776759019335,
+            "recall": 0.981737686773658,
+            "f1-score": 0.5199296600234466,
+            "support": 1807.0
+          },
+          "accuracy": 0.4461538461538462,
+          "macro avg": {
+            "precision": 0.6584247189844062,
+            "recall": 0.5961512192388251,
+            "f1-score": 0.43275747883313764,
+            "support": 5915.0
+          },
+          "weighted avg": {
+            "precision": 0.7770057528234737,
+            "recall": 0.4461538461538462,
+            "f1-score": 0.3988465424140504,
+            "support": 5915.0
+          }
+        }
+      }
+    }
+  },
+  "category": {
+    "train": {
+      "count": 36,
+      "distribution": {
+        "Financeiro": 4,
+        "RH": 4,
+        "Suporte": 4,
+        "Sistemas": 4,
+        "Comercial": 4,
+        "Administrativo": 4,
+        "Notificações": 4,
+        "Pessoal": 4,
+        "Outros": 4
+      },
+      "labels": [
+        "Financeiro",
+        "Suporte",
+        "RH",
+        "Sistemas",
+        "Comercial",
+        "Administrativo",
+        "Notificações",
+        "Pessoal",
+        "Outros"
+      ],
+      "accuracy": 1.0,
+      "classification_report": {
+        "Financeiro": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Suporte": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "RH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Sistemas": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Comercial": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Administrativo": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Notificações": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Pessoal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Outros": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 36.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 36.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "trained_categories": [
+        "Administrativo",
+        "Comercial",
+        "Financeiro",
+        "Notificações",
+        "Outros",
+        "Pessoal",
+        "RH",
+        "Sistemas",
+        "Suporte"
+      ],
+      "missing_training_categories": [],
+      "review_rate": 0.8888888888888888,
+      "end_to_end_correct_label_rate": 0.0
+    },
+    "validation": {
+      "count": 18,
+      "distribution": {
+        "Financeiro": 2,
+        "RH": 2,
+        "Suporte": 2,
+        "Sistemas": 2,
+        "Comercial": 2,
+        "Administrativo": 2,
+        "Notificações": 2,
+        "Pessoal": 2,
+        "Outros": 2
+      },
+      "labels": [
+        "Financeiro",
+        "Suporte",
+        "RH",
+        "Sistemas",
+        "Comercial",
+        "Administrativo",
+        "Notificações",
+        "Pessoal",
+        "Outros"
+      ],
+      "accuracy": 0.8333333333333334,
+      "classification_report": {
+        "Financeiro": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5,
+          "support": 2.0
+        },
+        "Suporte": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "RH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Sistemas": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666,
+          "support": 2.0
+        },
+        "Comercial": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Administrativo": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "support": 2.0
+        },
+        "Notificações": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "support": 2.0
+        },
+        "Pessoal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Outros": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "accuracy": 0.8333333333333334,
+        "macro avg": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.8333333333333334,
+          "support": 18.0
+        },
+        "weighted avg": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.8333333333333334,
+          "support": 18.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "trained_categories": [
+        "Administrativo",
+        "Comercial",
+        "Financeiro",
+        "Notificações",
+        "Outros",
+        "Pessoal",
+        "RH",
+        "Sistemas",
+        "Suporte"
+      ],
+      "missing_training_categories": [],
+      "review_rate": 0.9444444444444444,
+      "end_to_end_correct_label_rate": 0.0
+    },
+    "test": {
+      "count": 18,
+      "distribution": {
+        "Financeiro": 2,
+        "RH": 2,
+        "Suporte": 2,
+        "Sistemas": 2,
+        "Comercial": 2,
+        "Administrativo": 2,
+        "Notificações": 2,
+        "Pessoal": 2,
+        "Outros": 2
+      },
+      "labels": [
+        "Financeiro",
+        "Suporte",
+        "RH",
+        "Sistemas",
+        "Comercial",
+        "Administrativo",
+        "Notificações",
+        "Pessoal",
+        "Outros"
+      ],
+      "accuracy": 0.9444444444444444,
+      "classification_report": {
+        "Financeiro": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Suporte": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "RH": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "support": 2.0
+        },
+        "Sistemas": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1-score": 0.8,
+          "support": 2.0
+        },
+        "Comercial": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Administrativo": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Notificações": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Pessoal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "Outros": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "accuracy": 0.9444444444444444,
+        "macro avg": {
+          "precision": 0.9629629629629629,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.9407407407407408,
+          "support": 18.0
+        },
+        "weighted avg": {
+          "precision": 0.9629629629629629,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.9407407407407408,
+          "support": 18.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "trained_categories": [
+        "Administrativo",
+        "Comercial",
+        "Financeiro",
+        "Notificações",
+        "Outros",
+        "Pessoal",
+        "RH",
+        "Sistemas",
+        "Suporte"
+      ],
+      "missing_training_categories": [],
+      "review_rate": 0.8888888888888888,
+      "end_to_end_correct_label_rate": 0.0
+    }
+  },
+  "sms_comparison_warning": "Same email evaluation texts; SpamShield's underlying corpus overlap is unknown, so this is not an assured independent benchmark for that model.",
+  "policy_metric_note": "At policy: binary spam suggestion versus no spam suggestion; non-suggestions include review, not just accepted ham.",
+  "execution_date": "2026-11-05",
+  "environment": {
+    "python": "3.13.14",
+    "scikit_learn": "1.9.1"
+  },
+  "sources": {
+    "enron_original": "https://www2.aueb.gr/users/ion/data/enron-spam/",
+    "enron_csv_mirror": "https://github.com/MWiechmann/enron_spam_data",
+    "spamassassin": "https://spamassassin.apache.org/old/publiccorpus/readme.html"
+  }
+}

@@ -102,3 +102,22 @@ empírica continuam pendentes. A lista da entrega anterior registra seu escopo h
 
 Essa entrega experimental não conclui a validação empírica com referência humana nem
 autoriza escrita no Gmail. O teste consultado não deve orientar ajustes futuros.
+
+## Roteiro com autonomia — 2026-11-05
+
+- [x] rotular experimentalmente a amostra pública com procedência de IA e exclusões de ambiguidade;
+- [x] separar amostra temática dos dados de spam, incluindo quarentena dos grupos relacionados;
+- [x] combinar fontes reais históricas como desenvolvimento já observado;
+- [x] comparar palavras, caracteres e combinação, selecionando somente por validação;
+- [x] escolher política empírica por validação e desabilitar aceitação temática sem suporte suficiente;
+- [x] congelar modelos e entradas antes da anotação do teste temático reservado;
+- [x] avaliar o teste uma vez, registrar baixa concordância temática sem mudar parâmetros;
+- [x] renovar OAuth com consentimento humano e simular 100 mensagens recentes sem fit ou escrita;
+- [x] disponibilizar modo ativo de revisão e avaliação humana com classes ausentes;
+- [ ] obter referência humana independente e avaliar mensagens recentes/português/outros provedores;
+- [ ] ampliar dados temáticos, reservar novo teste e comprovar ganho antes de aceitação automática;
+- [ ] calibrar probabilidades com referência apropriada;
+- [ ] autorizar implementação de escrita reversível no Gmail em etapa separada.
+
+Concluída a execução experimental automatizável; validação humana e qualidade de
+produção não foram presumidas. [Guia](14-real-development.md).

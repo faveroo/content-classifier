@@ -1,0 +1,1283 @@
+{
+  "source": "historical_public_email_development",
+  "seed": 42,
+  "selected": "char",
+  "selection_basis": "validation_only_worst_source_macro_f1",
+  "validation_candidates": {
+    "word": {
+      "validation": {
+        "count": 5209,
+        "threshold": 0.5,
+        "accuracy": 0.9842580149740833,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2792,
+            53
+          ],
+          [
+            29,
+            2335
+          ]
+        ],
+        "false_positives": 53,
+        "false_negatives": 29,
+        "false_positive_rate": 0.018629173989455183,
+        "spam_precision": 0.9778056951423786,
+        "spam_recall": 0.9877326565143824,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9897199574618929,
+            "recall": 0.9813708260105448,
+            "f1-score": 0.9855277091422521,
+            "support": 2845.0
+          },
+          "spam": {
+            "precision": 0.9778056951423786,
+            "recall": 0.9877326565143824,
+            "f1-score": 0.9827441077441077,
+            "support": 2364.0
+          },
+          "accuracy": 0.9842580149740833,
+          "macro avg": {
+            "precision": 0.9837628263021357,
+            "recall": 0.9845517412624636,
+            "f1-score": 0.9841359084431799,
+            "support": 5209.0
+          },
+          "weighted avg": {
+            "precision": 0.9843129088684331,
+            "recall": 0.9842580149740833,
+            "f1-score": 0.9842644275708922,
+            "support": 5209.0
+          }
+        }
+      },
+      "by_source": {
+        "enron": {
+          "count": 4325,
+          "threshold": 0.5,
+          "accuracy": 0.9870520231213873,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              2194,
+              38
+            ],
+            [
+              18,
+              2075
+            ]
+          ],
+          "false_positives": 38,
+          "false_negatives": 18,
+          "false_positive_rate": 0.017025089605734768,
+          "spam_precision": 0.9820160908660672,
+          "spam_recall": 0.9913999044433827,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9918625678119349,
+              "recall": 0.9829749103942652,
+              "f1-score": 0.9873987398739874,
+              "support": 2232.0
+            },
+            "spam": {
+              "precision": 0.9820160908660672,
+              "recall": 0.9913999044433827,
+              "f1-score": 0.9866856871136471,
+              "support": 2093.0
+            },
+            "accuracy": 0.9870520231213873,
+            "macro avg": {
+              "precision": 0.9869393293390011,
+              "recall": 0.9871874074188239,
+              "f1-score": 0.9870422134938173,
+              "support": 4325.0
+            },
+            "weighted avg": {
+              "precision": 0.9870975559627554,
+              "recall": 0.9870520231213873,
+              "f1-score": 0.9870536717982897,
+              "support": 4325.0
+            }
+          }
+        },
+        "spamassassin": {
+          "count": 884,
+          "threshold": 0.5,
+          "accuracy": 0.9705882352941176,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              598,
+              15
+            ],
+            [
+              11,
+              260
+            ]
+          ],
+          "false_positives": 15,
+          "false_negatives": 11,
+          "false_positive_rate": 0.024469820554649267,
+          "spam_precision": 0.9454545454545454,
+          "spam_recall": 0.959409594095941,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9819376026272578,
+              "recall": 0.9755301794453507,
+              "f1-score": 0.9787234042553191,
+              "support": 613.0
+            },
+            "spam": {
+              "precision": 0.9454545454545454,
+              "recall": 0.959409594095941,
+              "f1-score": 0.9523809523809523,
+              "support": 271.0
+            },
+            "accuracy": 0.9705882352941176,
+            "macro avg": {
+              "precision": 0.9636960740409016,
+              "recall": 0.9674698867706458,
+              "f1-score": 0.9655521783181358,
+              "support": 884.0
+            },
+            "weighted avg": {
+              "precision": 0.9707533170007814,
+              "recall": 0.9705882352941176,
+              "f1-score": 0.9706478336015257,
+              "support": 884.0
+            }
+          }
+        }
+      },
+      "spam_policy": {
+        "threshold": 0.7,
+        "feasible": true,
+        "validation": {
+          "count": 5209,
+          "threshold": 0.7,
+          "accuracy": 0.9694759070838933,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              2828,
+              17
+            ],
+            [
+              142,
+              2222
+            ]
+          ],
+          "false_positives": 17,
+          "false_negatives": 142,
+          "false_positive_rate": 0.005975395430579965,
+          "spam_precision": 0.9924073246985261,
+          "spam_recall": 0.939932318104907,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9521885521885521,
+              "recall": 0.99402460456942,
+              "f1-score": 0.9726569217540842,
+              "support": 2845.0
+            },
+            "spam": {
+              "precision": 0.9924073246985261,
+              "recall": 0.939932318104907,
+              "f1-score": 0.9654573104497067,
+              "support": 2364.0
+            },
+            "accuracy": 0.9694759070838933,
+            "macro avg": {
+              "precision": 0.9722979384435391,
+              "recall": 0.9669784613371635,
+              "f1-score": 0.9690571161018955,
+              "support": 5209.0
+            },
+            "weighted avg": {
+              "precision": 0.9704410340878761,
+              "recall": 0.9694759070838933,
+              "f1-score": 0.9693895228054284,
+              "support": 5209.0
+            }
+          }
+        },
+        "by_source": {
+          "enron": {
+            "count": 4325,
+            "threshold": 0.7,
+            "accuracy": 0.9715606936416185,
+            "labels": [
+              "ham",
+              "spam"
+            ],
+            "confusion_matrix": [
+              [
+                2220,
+                12
+              ],
+              [
+                111,
+                1982
+              ]
+            ],
+            "false_positives": 12,
+            "false_negatives": 111,
+            "false_positive_rate": 0.005376344086021506,
+            "spam_precision": 0.9939819458375125,
+            "spam_recall": 0.94696607740086,
+            "classification_report": {
+              "ham": {
+                "precision": 0.9523809523809523,
+                "recall": 0.9946236559139785,
+                "f1-score": 0.9730440499671269,
+                "support": 2232.0
+              },
+              "spam": {
+                "precision": 0.9939819458375125,
+                "recall": 0.94696607740086,
+                "f1-score": 0.9699045754832395,
+                "support": 2093.0
+              },
+              "accuracy": 0.9715606936416185,
+              "macro avg": {
+                "precision": 0.9731814491092324,
+                "recall": 0.9707948666574193,
+                "f1-score": 0.9714743127251833,
+                "support": 4325.0
+              },
+              "weighted avg": {
+                "precision": 0.9725129475958844,
+                "recall": 0.9715606936416185,
+                "f1-score": 0.9715247620839417,
+                "support": 4325.0
+              }
+            }
+          },
+          "spamassassin": {
+            "count": 884,
+            "threshold": 0.7,
+            "accuracy": 0.9592760180995475,
+            "labels": [
+              "ham",
+              "spam"
+            ],
+            "confusion_matrix": [
+              [
+                608,
+                5
+              ],
+              [
+                31,
+                240
+              ]
+            ],
+            "false_positives": 5,
+            "false_negatives": 31,
+            "false_positive_rate": 0.008156606851549755,
+            "spam_precision": 0.9795918367346939,
+            "spam_recall": 0.8856088560885609,
+            "classification_report": {
+              "ham": {
+                "precision": 0.9514866979655712,
+                "recall": 0.9918433931484503,
+                "f1-score": 0.9712460063897763,
+                "support": 613.0
+              },
+              "spam": {
+                "precision": 0.9795918367346939,
+                "recall": 0.8856088560885609,
+                "f1-score": 0.9302325581395349,
+                "support": 271.0
+              },
+              "accuracy": 0.9592760180995475,
+              "macro avg": {
+                "precision": 0.9655392673501325,
+                "recall": 0.9387261246185056,
+                "f1-score": 0.9507392822646556,
+                "support": 884.0
+              },
+              "weighted avg": {
+                "precision": 0.9601026398280511,
+                "recall": 0.9592760180995475,
+                "f1-score": 0.9586728791546909,
+                "support": 884.0
+              }
+            }
+          }
+        }
+      },
+      "worst_source_macro_f1": 0.9655521783181358
+    },
+    "char": {
+      "validation": {
+        "count": 5209,
+        "threshold": 0.5,
+        "accuracy": 0.9857938183912459,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2796,
+            49
+          ],
+          [
+            25,
+            2339
+          ]
+        ],
+        "false_positives": 49,
+        "false_negatives": 25,
+        "false_positive_rate": 0.017223198594024606,
+        "spam_precision": 0.9794807370184254,
+        "spam_recall": 0.989424703891709,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9911378943637008,
+            "recall": 0.9827768014059753,
+            "f1-score": 0.9869396399576421,
+            "support": 2845.0
+          },
+          "spam": {
+            "precision": 0.9794807370184254,
+            "recall": 0.989424703891709,
+            "f1-score": 0.9844276094276094,
+            "support": 2364.0
+          },
+          "accuracy": 0.9857938183912459,
+          "macro avg": {
+            "precision": 0.9853093156910631,
+            "recall": 0.9861007526488421,
+            "f1-score": 0.9856836246926257,
+            "support": 5209.0
+          },
+          "weighted avg": {
+            "precision": 0.9858475276975016,
+            "recall": 0.9857938183912459,
+            "f1-score": 0.9857996053688541,
+            "support": 5209.0
+          }
+        }
+      },
+      "by_source": {
+        "enron": {
+          "count": 4325,
+          "threshold": 0.5,
+          "accuracy": 0.9865895953757226,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              2190,
+              42
+            ],
+            [
+              16,
+              2077
+            ]
+          ],
+          "false_positives": 42,
+          "false_negatives": 16,
+          "false_positive_rate": 0.01881720430107527,
+          "spam_precision": 0.9801793298725814,
+          "spam_recall": 0.9923554706163402,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9927470534904805,
+              "recall": 0.9811827956989247,
+              "f1-score": 0.9869310500225327,
+              "support": 2232.0
+            },
+            "spam": {
+              "precision": 0.9801793298725814,
+              "recall": 0.9923554706163402,
+              "f1-score": 0.9862298195631529,
+              "support": 2093.0
+            },
+            "accuracy": 0.9865895953757226,
+            "macro avg": {
+              "precision": 0.986463191681531,
+              "recall": 0.9867691331576325,
+              "f1-score": 0.9865804347928429,
+              "support": 4325.0
+            },
+            "weighted avg": {
+              "precision": 0.9866651470090324,
+              "recall": 0.9865895953757226,
+              "f1-score": 0.986591703120456,
+              "support": 4325.0
+            }
+          }
+        },
+        "spamassassin": {
+          "count": 884,
+          "threshold": 0.5,
+          "accuracy": 0.9819004524886877,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              606,
+              7
+            ],
+            [
+              9,
+              262
+            ]
+          ],
+          "false_positives": 7,
+          "false_negatives": 9,
+          "false_positive_rate": 0.011419249592169658,
+          "spam_precision": 0.9739776951672863,
+          "spam_recall": 0.966789667896679,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9853658536585366,
+              "recall": 0.9885807504078303,
+              "f1-score": 0.9869706840390879,
+              "support": 613.0
+            },
+            "spam": {
+              "precision": 0.9739776951672863,
+              "recall": 0.966789667896679,
+              "f1-score": 0.9703703703703703,
+              "support": 271.0
+            },
+            "accuracy": 0.9819004524886877,
+            "macro avg": {
+              "precision": 0.9796717744129114,
+              "recall": 0.9776852091522547,
+              "f1-score": 0.9786705272047291,
+              "support": 884.0
+            },
+            "weighted avg": {
+              "precision": 0.9818746874242279,
+              "recall": 0.9819004524886877,
+              "f1-score": 0.9818816738533159,
+              "support": 884.0
+            }
+          }
+        }
+      },
+      "spam_policy": {
+        "threshold": 0.7,
+        "feasible": true,
+        "validation": {
+          "count": 5209,
+          "threshold": 0.7,
+          "accuracy": 0.9771549241697063,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              2829,
+              16
+            ],
+            [
+              103,
+              2261
+            ]
+          ],
+          "false_positives": 16,
+          "false_negatives": 103,
+          "false_positive_rate": 0.00562390158172232,
+          "spam_precision": 0.9929732103645147,
+          "spam_recall": 0.9564297800338409,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9648703956343793,
+              "recall": 0.9943760984182777,
+              "f1-score": 0.9794010732213951,
+              "support": 2845.0
+            },
+            "spam": {
+              "precision": 0.9929732103645147,
+              "recall": 0.9564297800338409,
+              "f1-score": 0.9743589743589743,
+              "support": 2364.0
+            },
+            "accuracy": 0.9771549241697063,
+            "macro avg": {
+              "precision": 0.978921802999447,
+              "recall": 0.9754029392260593,
+              "f1-score": 0.9768800237901847,
+              "support": 5209.0
+            },
+            "weighted avg": {
+              "precision": 0.9776242935076831,
+              "recall": 0.9771549241697063,
+              "f1-score": 0.9771128179496035,
+              "support": 5209.0
+            }
+          }
+        },
+        "by_source": {
+          "enron": {
+            "count": 4325,
+            "threshold": 0.7,
+            "accuracy": 0.9815028901734104,
+            "labels": [
+              "ham",
+              "spam"
+            ],
+            "confusion_matrix": [
+              [
+                2218,
+                14
+              ],
+              [
+                66,
+                2027
+              ]
+            ],
+            "false_positives": 14,
+            "false_negatives": 66,
+            "false_positive_rate": 0.0062724014336917565,
+            "spam_precision": 0.993140617344439,
+            "spam_recall": 0.9684663162924032,
+            "classification_report": {
+              "ham": {
+                "precision": 0.9711033274956217,
+                "recall": 0.9937275985663082,
+                "f1-score": 0.9822852081488043,
+                "support": 2232.0
+              },
+              "spam": {
+                "precision": 0.993140617344439,
+                "recall": 0.9684663162924032,
+                "f1-score": 0.980648282535075,
+                "support": 2093.0
+              },
+              "accuracy": 0.9815028901734104,
+              "macro avg": {
+                "precision": 0.9821219724200303,
+                "recall": 0.9810969574293558,
+                "f1-score": 0.9814667453419397,
+                "support": 4325.0
+              },
+              "weighted avg": {
+                "precision": 0.9817678471843094,
+                "recall": 0.9815028901734104,
+                "f1-score": 0.9814930496957326,
+                "support": 4325.0
+              }
+            }
+          },
+          "spamassassin": {
+            "count": 884,
+            "threshold": 0.7,
+            "accuracy": 0.9558823529411765,
+            "labels": [
+              "ham",
+              "spam"
+            ],
+            "confusion_matrix": [
+              [
+                611,
+                2
+              ],
+              [
+                37,
+                234
+              ]
+            ],
+            "false_positives": 2,
+            "false_negatives": 37,
+            "false_positive_rate": 0.0032626427406199023,
+            "spam_precision": 0.9915254237288136,
+            "spam_recall": 0.8634686346863468,
+            "classification_report": {
+              "ham": {
+                "precision": 0.9429012345679012,
+                "recall": 0.9967373572593801,
+                "f1-score": 0.9690721649484536,
+                "support": 613.0
+              },
+              "spam": {
+                "precision": 0.9915254237288136,
+                "recall": 0.8634686346863468,
+                "f1-score": 0.9230769230769231,
+                "support": 271.0
+              },
+              "accuracy": 0.9558823529411765,
+              "macro avg": {
+                "precision": 0.9672133291483573,
+                "recall": 0.9301029959728635,
+                "f1-score": 0.9460745440126883,
+                "support": 884.0
+              },
+              "weighted avg": {
+                "precision": 0.9578075188016197,
+                "recall": 0.9558823529411765,
+                "f1-score": 0.9549718136507334,
+                "support": 884.0
+              }
+            }
+          }
+        }
+      },
+      "worst_source_macro_f1": 0.9786705272047291
+    },
+    "hybrid": {
+      "validation": {
+        "count": 5209,
+        "threshold": 0.5,
+        "accuracy": 0.9888654252255711,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2810,
+            35
+          ],
+          [
+            23,
+            2341
+          ]
+        ],
+        "false_positives": 35,
+        "false_negatives": 23,
+        "false_positive_rate": 0.012302284710017574,
+        "spam_precision": 0.9852693602693603,
+        "spam_recall": 0.9902707275803723,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9918813978115072,
+            "recall": 0.9876977152899824,
+            "f1-score": 0.9897851356111307,
+            "support": 2845.0
+          },
+          "spam": {
+            "precision": 0.9852693602693603,
+            "recall": 0.9902707275803723,
+            "f1-score": 0.9877637130801687,
+            "support": 2364.0
+          },
+          "accuracy": 0.9888654252255711,
+          "macro avg": {
+            "precision": 0.9885753790404337,
+            "recall": 0.9889842214351774,
+            "f1-score": 0.9887744243456498,
+            "support": 5209.0
+          },
+          "weighted avg": {
+            "precision": 0.9888806574103485,
+            "recall": 0.9888654252255711,
+            "f1-score": 0.988867753606294,
+            "support": 5209.0
+          }
+        }
+      },
+      "by_source": {
+        "enron": {
+          "count": 4325,
+          "threshold": 0.5,
+          "accuracy": 0.9907514450867052,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              2205,
+              27
+            ],
+            [
+              13,
+              2080
+            ]
+          ],
+          "false_positives": 27,
+          "false_negatives": 13,
+          "false_positive_rate": 0.012096774193548387,
+          "spam_precision": 0.9871855719031799,
+          "spam_recall": 0.9937888198757764,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9941388638412985,
+              "recall": 0.9879032258064516,
+              "f1-score": 0.9910112359550561,
+              "support": 2232.0
+            },
+            "spam": {
+              "precision": 0.9871855719031799,
+              "recall": 0.9937888198757764,
+              "f1-score": 0.9904761904761905,
+              "support": 2093.0
+            },
+            "accuracy": 0.9907514450867052,
+            "macro avg": {
+              "precision": 0.9906622178722392,
+              "recall": 0.990846022841114,
+              "f1-score": 0.9907437132156234,
+              "support": 4325.0
+            },
+            "weighted avg": {
+              "precision": 0.9907739528525165,
+              "recall": 0.9907514450867052,
+              "f1-score": 0.9907523110562664,
+              "support": 4325.0
+            }
+          }
+        },
+        "spamassassin": {
+          "count": 884,
+          "threshold": 0.5,
+          "accuracy": 0.9796380090497737,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              605,
+              8
+            ],
+            [
+              10,
+              261
+            ]
+          ],
+          "false_positives": 8,
+          "false_negatives": 10,
+          "false_positive_rate": 0.013050570962479609,
+          "spam_precision": 0.9702602230483272,
+          "spam_recall": 0.9630996309963099,
+          "classification_report": {
+            "ham": {
+              "precision": 0.983739837398374,
+              "recall": 0.9869494290375204,
+              "f1-score": 0.9853420195439739,
+              "support": 613.0
+            },
+            "spam": {
+              "precision": 0.9702602230483272,
+              "recall": 0.9630996309963099,
+              "f1-score": 0.9666666666666667,
+              "support": 271.0
+            },
+            "accuracy": 0.9796380090497737,
+            "macro avg": {
+              "precision": 0.9770000302233506,
+              "recall": 0.9750245300169151,
+              "f1-score": 0.9760043431053202,
+              "support": 884.0
+            },
+            "weighted avg": {
+              "precision": 0.9796075121847284,
+              "recall": 0.9796380090497737,
+              "f1-score": 0.9796168830849805,
+              "support": 884.0
+            }
+          }
+        }
+      },
+      "spam_policy": {
+        "threshold": 0.6,
+        "feasible": true,
+        "validation": {
+          "count": 5209,
+          "threshold": 0.6,
+          "accuracy": 0.9879055480898445,
+          "labels": [
+            "ham",
+            "spam"
+          ],
+          "confusion_matrix": [
+            [
+              2824,
+              21
+            ],
+            [
+              42,
+              2322
+            ]
+          ],
+          "false_positives": 21,
+          "false_negatives": 42,
+          "false_positive_rate": 0.007381370826010545,
+          "spam_precision": 0.9910371318822023,
+          "spam_recall": 0.9822335025380711,
+          "classification_report": {
+            "ham": {
+              "precision": 0.9853454291695743,
+              "recall": 0.9926186291739895,
+              "f1-score": 0.9889686569777623,
+              "support": 2845.0
+            },
+            "spam": {
+              "precision": 0.9910371318822023,
+              "recall": 0.9822335025380711,
+              "f1-score": 0.9866156787762906,
+              "support": 2364.0
+            },
+            "accuracy": 0.9879055480898445,
+            "macro avg": {
+              "precision": 0.9881912805258883,
+              "recall": 0.9874260658560303,
+              "f1-score": 0.9877921678770265,
+              "support": 5209.0
+            },
+            "weighted avg": {
+              "precision": 0.9879284940980928,
+              "recall": 0.9879055480898445,
+              "f1-score": 0.987900805092894,
+              "support": 5209.0
+            }
+          }
+        },
+        "by_source": {
+          "enron": {
+            "count": 4325,
+            "threshold": 0.6,
+            "accuracy": 0.9886705202312138,
+            "labels": [
+              "ham",
+              "spam"
+            ],
+            "confusion_matrix": [
+              [
+                2213,
+                19
+              ],
+              [
+                30,
+                2063
+              ]
+            ],
+            "false_positives": 19,
+            "false_negatives": 30,
+            "false_positive_rate": 0.008512544802867384,
+            "spam_precision": 0.9908741594620557,
+            "spam_recall": 0.9856665074056379,
+            "classification_report": {
+              "ham": {
+                "precision": 0.9866250557289344,
+                "recall": 0.9914874551971327,
+                "f1-score": 0.989050279329609,
+                "support": 2232.0
+              },
+              "spam": {
+                "precision": 0.9908741594620557,
+                "recall": 0.9856665074056379,
+                "f1-score": 0.9882634730538922,
+                "support": 2093.0
+              },
+              "accuracy": 0.9886705202312138,
+              "macro avg": {
+                "precision": 0.9887496075954951,
+                "recall": 0.9885769813013853,
+                "f1-score": 0.9886568761917506,
+                "support": 4325.0
+              },
+              "weighted avg": {
+                "precision": 0.988681327200246,
+                "recall": 0.9886705202312138,
+                "f1-score": 0.9886695196683197,
+                "support": 4325.0
+              }
+            }
+          },
+          "spamassassin": {
+            "count": 884,
+            "threshold": 0.6,
+            "accuracy": 0.9841628959276018,
+            "labels": [
+              "ham",
+              "spam"
+            ],
+            "confusion_matrix": [
+              [
+                611,
+                2
+              ],
+              [
+                12,
+                259
+              ]
+            ],
+            "false_positives": 2,
+            "false_negatives": 12,
+            "false_positive_rate": 0.0032626427406199023,
+            "spam_precision": 0.9923371647509579,
+            "spam_recall": 0.955719557195572,
+            "classification_report": {
+              "ham": {
+                "precision": 0.9807383627608347,
+                "recall": 0.9967373572593801,
+                "f1-score": 0.988673139158576,
+                "support": 613.0
+              },
+              "spam": {
+                "precision": 0.9923371647509579,
+                "recall": 0.955719557195572,
+                "f1-score": 0.9736842105263158,
+                "support": 271.0
+              },
+              "accuracy": 0.9841628959276018,
+              "macro avg": {
+                "precision": 0.9865377637558963,
+                "recall": 0.976228457227476,
+                "f1-score": 0.9811786748424459,
+                "support": 884.0
+              },
+              "weighted avg": {
+                "precision": 0.9842941040949109,
+                "recall": 0.9841628959276018,
+                "f1-score": 0.9840781169195008,
+                "support": 884.0
+              }
+            }
+          }
+        }
+      },
+      "worst_source_macro_f1": 0.9760043431053202
+    }
+  },
+  "spam_threshold": 0.7,
+  "legitimate_threshold": 0.3,
+  "diagnostic": {
+    "enron": {
+      "at_0_5": {
+        "count": 4334,
+        "threshold": 0.5,
+        "accuracy": 0.9845408398707891,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2115,
+            54
+          ],
+          [
+            13,
+            2152
+          ]
+        ],
+        "false_positives": 54,
+        "false_negatives": 13,
+        "false_positive_rate": 0.024896265560165973,
+        "spam_precision": 0.9755213055303718,
+        "spam_recall": 0.9939953810623556,
+        "classification_report": {
+          "ham": {
+            "precision": 0.993890977443609,
+            "recall": 0.975103734439834,
+            "f1-score": 0.9844077263206888,
+            "support": 2169.0
+          },
+          "spam": {
+            "precision": 0.9755213055303718,
+            "recall": 0.9939953810623556,
+            "f1-score": 0.9846716998398536,
+            "support": 2165.0
+          },
+          "accuracy": 0.9845408398707891,
+          "macro avg": {
+            "precision": 0.9847061414869904,
+            "recall": 0.9845495577510948,
+            "f1-score": 0.9845397130802712,
+            "support": 4334.0
+          },
+          "weighted avg": {
+            "precision": 0.9847146184929493,
+            "recall": 0.9845408398707891,
+            "f1-score": 0.9845395912650801,
+            "support": 4334.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 4334,
+        "threshold": 0.7,
+        "accuracy": 0.977618827872635,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2143,
+            26
+          ],
+          [
+            71,
+            2094
+          ]
+        ],
+        "false_positives": 26,
+        "false_negatives": 71,
+        "false_positive_rate": 0.0119870908252651,
+        "spam_precision": 0.9877358490566037,
+        "spam_recall": 0.9672055427251732,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9679313459801264,
+            "recall": 0.9880129091747349,
+            "f1-score": 0.9778690394706822,
+            "support": 2169.0
+          },
+          "spam": {
+            "precision": 0.9877358490566037,
+            "recall": 0.9672055427251732,
+            "f1-score": 0.9773628938156359,
+            "support": 2165.0
+          },
+          "accuracy": 0.977618827872635,
+          "macro avg": {
+            "precision": 0.9778335975183651,
+            "recall": 0.977609225949954,
+            "f1-score": 0.977615966643159,
+            "support": 4334.0
+          },
+          "weighted avg": {
+            "precision": 0.9778244583845043,
+            "recall": 0.977618827872635,
+            "f1-score": 0.9776162002129122,
+            "support": 4334.0
+          }
+        }
+      }
+    },
+    "spamassassin": {
+      "at_0_5": {
+        "count": 853,
+        "threshold": 0.5,
+        "accuracy": 0.9706916764361079,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            556,
+            13
+          ],
+          [
+            12,
+            272
+          ]
+        ],
+        "false_positives": 13,
+        "false_negatives": 12,
+        "false_positive_rate": 0.022847100175746926,
+        "spam_precision": 0.9543859649122807,
+        "spam_recall": 0.9577464788732394,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9788732394366197,
+            "recall": 0.9771528998242531,
+            "f1-score": 0.9780123131046614,
+            "support": 569.0
+          },
+          "spam": {
+            "precision": 0.9543859649122807,
+            "recall": 0.9577464788732394,
+            "f1-score": 0.9560632688927944,
+            "support": 284.0
+          },
+          "accuracy": 0.9706916764361079,
+          "macro avg": {
+            "precision": 0.9666296021744503,
+            "recall": 0.9674496893487463,
+            "f1-score": 0.9670377909987279,
+            "support": 853.0
+          },
+          "weighted avg": {
+            "precision": 0.9707203836747063,
+            "recall": 0.9706916764361079,
+            "f1-score": 0.9707045422299014,
+            "support": 853.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 853,
+        "threshold": 0.7,
+        "accuracy": 0.9613130128956624,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            566,
+            3
+          ],
+          [
+            30,
+            254
+          ]
+        ],
+        "false_positives": 3,
+        "false_negatives": 30,
+        "false_positive_rate": 0.005272407732864675,
+        "spam_precision": 0.9883268482490273,
+        "spam_recall": 0.8943661971830986,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9496644295302014,
+            "recall": 0.9947275922671354,
+            "f1-score": 0.9716738197424892,
+            "support": 569.0
+          },
+          "spam": {
+            "precision": 0.9883268482490273,
+            "recall": 0.8943661971830986,
+            "f1-score": 0.9390018484288355,
+            "support": 284.0
+          },
+          "accuracy": 0.9613130128956624,
+          "macro avg": {
+            "precision": 0.9689956388896144,
+            "recall": 0.944546894725117,
+            "f1-score": 0.9553378340856624,
+            "support": 853.0
+          },
+          "weighted avg": {
+            "precision": 0.9625367940274424,
+            "recall": 0.9613130128956624,
+            "f1-score": 0.9607959301140279,
+            "support": 853.0
+          }
+        }
+      }
+    },
+    "all_sources": {
+      "at_0_5": {
+        "count": 5187,
+        "threshold": 0.5,
+        "accuracy": 0.9822633506844033,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2671,
+            67
+          ],
+          [
+            25,
+            2424
+          ]
+        ],
+        "false_positives": 67,
+        "false_negatives": 25,
+        "false_positive_rate": 0.024470416362308255,
+        "spam_precision": 0.9731031714171016,
+        "spam_recall": 0.9897917517354022,
+        "classification_report": {
+          "ham": {
+            "precision": 0.990727002967359,
+            "recall": 0.9755295836376917,
+            "f1-score": 0.9830695620169304,
+            "support": 2738.0
+          },
+          "spam": {
+            "precision": 0.9731031714171016,
+            "recall": 0.9897917517354022,
+            "f1-score": 0.9813765182186235,
+            "support": 2449.0
+          },
+          "accuracy": 0.9822633506844033,
+          "macro avg": {
+            "precision": 0.9819150871922303,
+            "recall": 0.982660667686547,
+            "f1-score": 0.982223040117777,
+            "support": 5187.0
+          },
+          "weighted avg": {
+            "precision": 0.9824060537738791,
+            "recall": 0.9822633506844033,
+            "f1-score": 0.9822702051127365,
+            "support": 5187.0
+          }
+        }
+      },
+      "at_policy": {
+        "count": 5187,
+        "threshold": 0.7,
+        "accuracy": 0.974937343358396,
+        "labels": [
+          "ham",
+          "spam"
+        ],
+        "confusion_matrix": [
+          [
+            2709,
+            29
+          ],
+          [
+            101,
+            2348
+          ]
+        ],
+        "false_positives": 29,
+        "false_negatives": 101,
+        "false_positive_rate": 0.010591672753834916,
+        "spam_precision": 0.9877997475809844,
+        "spam_recall": 0.9587586770110249,
+        "classification_report": {
+          "ham": {
+            "precision": 0.9640569395017794,
+            "recall": 0.9894083272461651,
+            "f1-score": 0.9765681326604182,
+            "support": 2738.0
+          },
+          "spam": {
+            "precision": 0.9877997475809844,
+            "recall": 0.9587586770110249,
+            "f1-score": 0.9730625777041028,
+            "support": 2449.0
+          },
+          "accuracy": 0.974937343358396,
+          "macro avg": {
+            "precision": 0.9759283435413819,
+            "recall": 0.974083502128595,
+            "f1-score": 0.9748153551822605,
+            "support": 5187.0
+          },
+          "weighted avg": {
+            "precision": 0.9752669138580495,
+            "recall": 0.974937343358396,
+            "f1-score": 0.9749130133066459,
+            "support": 5187.0
+          }
+        }
+      }
+    }
+  },
+  "counts": {
+    "train": 24358,
+    "validation": 5209,
+    "diagnostic": 5187
+  },
+  "topic_sample_groups_quarantined": 180,
+  "topic_sample_rows_quarantined": 965,
+  "warning": "Enron-Spam and SpamAssassin were observed previously; this is development/diagnostic, not a new independent final benchmark. No private Gmail message metrics or thematic annotations included."
+}

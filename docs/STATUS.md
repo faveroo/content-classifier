@@ -2,7 +2,7 @@
 
 ## Fase atual
 
-**Baseline local, Gmail somente leitura e primeiro experimento privado com supervisão do ChatGPT treinado/testado em 2026-10-27.**
+**Experimento real v2 congelado, com seleção por validação, temas rotulados por IA e simulação recente concluídos em 2026-11-05. Modo ativo exige revisão; validação humana independente pendente.**
 O usuário escolheu OAuth somente leitura para coleta de amostras reais privadas.
 Adaptador e fluxo local implementados; configuração Cloud, consentimento e coleta inicial concluídos.
 
@@ -70,8 +70,77 @@ e dashboard Streamlit para métricas e classificação local. O corpus declarado
 23 idiomas e é SMS binário; não altera o baseline de e-mail nem integra Gmail.
 
 Os arquivos do dataset continuam fora do Git; atribuição CC-BY-4.0 registrada na UI e
-documentação. Os arquivos do modelo/relatório só serão gerados após aceite dos termos
-do dataset na conta HF e execução local. Dutch/Italian não contêm ham. Neste ambiente,
-não há sessão/token Hugging Face ativo; por isso, o corpus real ainda não foi baixado,
-e o treino/teste oficial não foram executados. O pipeline teve smoke test com dados
-sintéticos temporários, fora do repositório.
+documentação. Dutch/Italian não contêm ham. O pipeline inicialmente teve smoke test
+com dados sintéticos temporários; treino/teste do corpus real estavam pendentes de acesso HF.
+
+### Treino/teste real concluído em 2026-11-05
+
+Autenticação HF local disponível e download autorizado concluído. Corpus com 149.359
+registros, 148.522 após remover duplicatas normalizadas, sem conflitos de rótulos
+nesses grupos. Divisão seed 42: 103.965 treino, 22.278 validação e 22.279 teste.
+Pipeline existente executado sem mudança de código ou hiperparâmetros.
+
+Teste global: acurácia 97,36%, F1 spam 97,41%, precision spam 98,32% e recall 96,52%;
+189 falsos positivos e 400 falsos negativos. Teste em português: 189 mensagens,
+acurácia 98,41%, 1 falso positivo e 2 falsos negativos. Métricas de SMS, sem validação
+de generalização para Gmail. Deduplicação exata não isola paráfrases/templates.
+
+Modelo salvo e inferência após recarregamento verificados; 71 testes automatizados
+passaram. Dados em `data/hf-cache`, modelo em `models/spamshield-multilingual.joblib`
+e relatório em `reports/spamshield-multilingual.json`, todos ignorados pelo Git.
+Registro reproduzível e métricas agregadas: [experimento SpamShield v1](experiments/spamshield-v1.md).
+Baseline de e-mail e política preservados, sem alterações no Gmail.
+
+## Mensagens/e-mails de qualquer provedor — 2026-11-05
+
+Importação de texto/EML/MBOX, revisão humana genérica, treino independente de spam e
+temas, CLI `classify` e painel disponíveis. Canal de mensagem seleciona SpamShield;
+canal e-mail usa Enron-Spam. Artefato `models/messages-v1.joblib`, relatório em
+`reports/messages-v1.json`, sem sobrescrever modelos anteriores.
+
+35.719 e-mails após preparação: 20.809 treino, 4.748 validação, 4.247 teste e 5.915
+externo SpamAssassin; 3.522 duplicatas exatas e 470 exemplos Enron de grupos sobrepostos
+ao externo removidos. Teste interno 98,12% versus externo 44,67% de acurácia em 0,5;
+121 falsos positivos externos em 0,9. Detector não validado para automação.
+
+Categorias treinadas com o dataset sintético existente: 36/18/18 legítimos. 180
+e-mails reais públicos aguardam revisão temática em armazenamento privado. Nenhum
+novo rótulo de IA nem confirmação humana foi fabricado. Cobertura e qualidade reais
+de temas, português atual e múltiplos provedores continuam pendentes.
+
+83 testes passaram. Consulte [guia](13-messages-email.md) e
+[experimento](experiments/messages-v1.md). Gmail continua somente leitura.
+
+## Dataset Kaggle isuranga — 2026-11-05
+
+Treino/teste solicitado concluído: origem declara 100 mil e-mails sintéticos, cinco
+idiomas (sem português), licença Apache 2.0. Após deduplicação, 95.109 textos:
+92.474 treino, 1.339 validação e 1.296 teste, com grupos preservados. 89 testes passaram.
+Novo modelo `models/messages-kaggle-v1.joblib`, selecionável na CLI/painel, sem
+sobrescrever anteriores. Teste sintético 100%; diagnóstico externo SpamAssassin
+68,44%, F1 spam 56,53%, com 167 falsos positivos em 0,9. Não promovido automaticamente.
+Temas reais continuam pendentes. [Registro completo](experiments/kaggle-isuranga-v1.md).
+
+## Desenvolvimento real v2 — 2026-11-05
+
+Roteiro solicitado com autonomia executado. Comparados palavras, caracteres e união;
+seleção pelo conjunto de validação. Spam: fontes reais Enron e SpamAssassin em
+desenvolvimento, com quarentena da amostra temática. Selecionado caracteres; diagnóstico
+histórico de 5.187 registros teve acurácia 98,23%, F1 spam 98,14% e 29 falsos positivos
+na política 0,70. Não é desempenho recente validado.
+
+Anotados 180 e-mails públicos pela IA, com exclusões por ambiguidade e reserva de
+teste antes da seleção. Com o lote privado AI anterior: 194 em desenvolvimento,
+149 treino/45 validação, nove categorias. Modelo congelado antes de abrir o teste
+temático: concordância com IA 6/18 (33,33%), três excluídos. Não é referência humana;
+aceitação automática temática desabilitada.
+
+OAuth somente leitura renovado pelo usuário; 100 mensagens recentes coletadas após
+congelamento e simuladas offline, cinco sobreposições de treino detectadas. Sem labels
+humanos, acurácia permanece indefinida. Fila operacional exige 100 revisões, zero
+alterações Gmail. Novo modelo privado ativo no painel e `classify --active`; anteriores
+preservados. 105 testes passaram e painel verificado com AppTest.
+
+Pendências científicas: revisão humana independente, dados temáticos mais amplos e
+referência recente em português/múltiplos provedores. Fluxo pronto para avaliar essa
+revisão, sem preencher confirmações por IA. [Guia](14-real-development.md).

@@ -11,6 +11,11 @@ from gmail_classifier.spamshield import load_spamshield_model, predict
 
 st.set_page_config(page_title="SpamShield · Classificador multilíngue", page_icon="🛡️",
                    layout="wide")
+mode = st.sidebar.radio("Experimento", ["Mensagens e e-mails", "SpamShield SMS"])
+if mode == "Mensagens e e-mails":
+    from gmail_classifier.message_dashboard import render
+    render()
+    st.stop()
 st.title("SpamShield · Classificador multilíngue")
 st.caption("Experimento local com corpus de SMS em 23 idiomas")
 

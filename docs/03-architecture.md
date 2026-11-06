@@ -70,3 +70,17 @@ Treinamento e avaliação ficam separados da política e do loader de dados.
 um modelo já treinado, sem conectar ao Gmail. `private_storage.py` bloqueia caminhos
 privados dentro do checkout e de árvores Git. Coleta, revisão, treino e inferência
 são comandos separados; o dataset nunca depende da caixa de produção durante o fit.
+
+## Núcleo independente de provedor (2026-11-05)
+
+`mail_input.py` extrai assunto/corpo de EML/MBOX e texto; `email_corpora.py` adquire
+corpora públicos e agrupa exemplos antes dos splits. `message_model.py` treina spam
+e categorias a partir de datasets separados, mantendo a política e artefato Baseline.
+`text_privacy.py` compartilha minimização com o adaptador Gmail, sem dependência da API.
+CLI `classify` e painel selecionam detector de e-mail ou SMS explicitamente. Uma
+categoria candidata é diagnóstico; só a política aceita labels. Guia: [13](13-messages-email.md).
+
+`experiment_v2.py` separa preparação, anotação, seleção por validação, congelamento,
+avaliação única e simulação. `text_features.py` é a normalização compartilhada e
+serializável. `active_model.py` verifica o artefato privado e exige revisão na camada
+operacional, preservando as saídas científicas congeladas. [Fluxo real](14-real-development.md).

@@ -22,12 +22,14 @@ def load_collection(path):
     raw = private_path(path).read_bytes()
     collection = json.loads(raw)
     if (not isinstance(collection, dict) or collection.get("format_version") != 1
-            or collection.get("source") != "gmail_reviewed"
+            or collection.get("source") not in {"gmail_reviewed", "email_reviewed"}
             or not isinstance(collection.get("records"), list) or not collection["records"]):
         raise ValueError("Invalid review collection")
     for row in collection["records"]:
         if not isinstance(row, dict) or set(row) != REVIEW_FIELDS:
             raise ValueError("Unexpected review fields")
+        if row["source"] != collection["source"]:
+            raise ValueError("Mixed review sources")
         if any(not isinstance(row[key], str) for key in ("id", "group_id", "subject", "body")):
             raise ValueError("Invalid text or identifier")
         if any(type(row[key]) is not bool for key in ("exclude", "human_reviewed", "privacy_reviewed")):

@@ -36,7 +36,7 @@ def validate_records(records: list[dict], *, allow_private=False, allow_ai=False
             raise ValueError(f"{prefix}: empty message")
         if type(row["is_spam"]) is not bool:
             raise ValueError(f"{prefix}: is_spam must be a boolean")
-        sources = {"synthetic", "gmail_reviewed"} if allow_private else {"synthetic"}
+        sources = {"synthetic", "gmail_reviewed", "email_reviewed"} if allow_private else {"synthetic"}
         if allow_ai:
             sources.add("gmail_ai_labeled")
         if row["source"] not in sources or row["split"] not in SPLITS:
@@ -55,7 +55,7 @@ def validate_records(records: list[dict], *, allow_private=False, allow_ai=False
         groups[row["group_id"]] = row["split"]
     if len({r["source"] for r in records}) != 1:
         raise ValueError("Do not mix synthetic and private data in one evaluation")
-    if records[0]["source"] == "gmail_ai_labeled":
+    if records[0]["source"] in {"gmail_ai_labeled", "email_reviewed"}:
         # Exploratory AI labels have incomplete class coverage; do not invent examples.
         training = [r for r in records if r["split"] == "train"]
         categories = {r["category"] for r in training if not r["is_spam"]}

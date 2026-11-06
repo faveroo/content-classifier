@@ -14,6 +14,14 @@ amostra pendente, treinar e testar. Rótulos de IA devem ter procedência própr
 acurácia validada por pessoas. O fluxo experimental exige opt-in separado; o fluxo
 de dataset humano continua exigindo revisão. Artefatos reais permanecem privados.
 
+Em 2026-11-05 o usuário autorizou seguir o roteiro com autonomia no projeto: rotulagem
+experimental por IA das amostras, desenvolvimento com fontes reais, comparação de
+baselines clássicos, escolha por validação e simulação reservada. Usar procedência
+`email_ai_labeled`, opt-ins de treino e artefatos privados. Não fabricar revisão humana.
+O experimento real-v2 fica congelado; testes já observados são diagnósticos para
+trabalhos futuros. O modo ativo exige revisão enquanto faltar referência humana.
+Gmail permanece somente leitura; consentimento foi renovado pelo usuário no navegador.
+
 ## Antes de realizar mudanças
 
 Leia, nesta ordem:

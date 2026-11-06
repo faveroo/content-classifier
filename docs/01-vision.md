@@ -6,7 +6,8 @@ Caixas de e-mail recebem mensagens de naturezas muito diferentes. Filtros tradic
 
 ## Visão
 
-Criar um classificador pessoal de e-mails que aprenda a partir de exemplos rotulados e possa auxiliar na organização de uma conta Gmail.
+Criar um classificador de mensagens e e-mails que aprenda a partir de exemplos rotulados,
+independente do provedor. A organização de uma conta Gmail é uma integração opcional.
 
 O projeto deve servir também como estudo prático de:
 

@@ -11,6 +11,8 @@
 - integração futura com Gmail API;
 - aplicação de labels de teste;
 - fluxo de revisão humana.
+- importação offline de texto, EML e MBOX de qualquer provedor;
+- treinamento independente de spam e temas, com teste externo por corpus.
 
 ## Fora do escopo inicial
 

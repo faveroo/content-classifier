@@ -171,6 +171,28 @@ def test_auth_rejects_unexpected_grant_and_sanitizes_failure(tmp_path, monkeypat
     assert "secret" not in str(error.value)
 
 
+def test_expired_grant_needs_explicit_auth_and_preserves_token_on_failure(tmp_path, monkeypatch):
+    credentials, _, flow_type = fake_auth(monkeypatch)
+    config, token = tmp_path / "credentials.json", tmp_path / "token.json"
+    config.write_text('{"installed": {}}')
+    original = json.dumps({"scopes": gmail.SCOPES, "token": "old-fake"})
+    token.write_text(original)
+    credentials.expired = True
+    credentials.refresh.side_effect = RuntimeError("secret OAuth response")
+    with pytest.raises(gmail.GmailError, match="run gmail-auth") as error:
+        gmail.authenticate(config, token)
+    assert "secret" not in str(error.value)
+    flow_type.from_client_config.assert_not_called()
+    assert token.read_text() == original
+    flow_type.from_client_config.return_value.run_local_server.side_effect = TimeoutError()
+    with pytest.raises(gmail.GmailError):
+        gmail.authenticate(config, token, interactive=True)
+    assert token.read_text() == original
+    flow_type.from_client_config.return_value.run_local_server.side_effect = None
+    assert gmail.authenticate(config, token, interactive=True) is credentials
+    assert json.loads(token.read_text())["token"] == "fake"
+
+
 def review_collection(records):
     rows = copy.deepcopy(records)
     for row in rows:

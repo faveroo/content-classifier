@@ -1,8 +1,31 @@
 # Gmail Email Classifier
 
-Projeto experimental para construir um classificador de e-mails integrado ao Gmail, usando Machine Learning em Python.
+Projeto experimental de classificação de mensagens e e-mails em Python, independente do provedor, com integração Gmail opcional.
 
-> **Estado atual:** Gmail somente leitura e primeiro experimento privado com rótulos do ChatGPT treinado/testado em 2026-10-27. Avaliação humana independente e automação Gmail permanecem pendentes.
+> **Estado atual:** experimento privado com spam multiorigem e nove temas rotulados por IA, selecionados por validação e congelados. Categorias tiveram baixa concordância no teste; o modo ativo exige revisão. Referência humana independente pendente; Gmail somente leitura.
+
+O [experimento real v2](docs/14-real-development.md) está disponível no painel e em
+`classify --active`. Foram comparadas palavras, caracteres e combinação; o diagnóstico
+histórico de spam teve acurácia 98,23%, sem alegação de qualidade recente. A simulação
+de 100 mensagens novas preservou a caixa. Os artefatos e rótulos reais ficam privados.
+
+## Mensagens e e-mails de qualquer provedor
+
+O [guia de uso e treinamento](docs/13-messages-email.md) explica a importação,
+classificação, revisão temática e avaliação. O modelo local `models/messages-v1.joblib`
+combina detector treinado em Enron-Spam com categorizador demonstrativo de nove temas.
+`classify --channel message` seleciona o detector SMS SpamShield. O painel oferece os
+dois fluxos. Resultados: [messages-v1](docs/experiments/messages-v1.md).
+
+Novo experimento disponível em `models/messages-kaggle-v1.joblib`, com o dataset
+**sintético** Kaggle isuranga solicitado. Teste gerado 100%; diagnóstico externo
+68,44%, sem promoção automática nem novos rótulos temáticos.
+[Resultados e uso](docs/experiments/kaggle-isuranga-v1.md).
+
+```powershell
+.\.venv\Scripts\python -m gmail_classifier.cli classify --model models/messages-v1.joblib --input caminho/mensagem.eml
+.\.venv\Scripts\python -m streamlit run src/gmail_classifier/dashboard.py
+```
 
 ## Objetivo
 
@@ -46,6 +69,10 @@ Leitura recomendada:
 11. [`docs/11-decisions.md`](docs/11-decisions.md)
 
 O andamento atual está em [`docs/STATUS.md`](docs/STATUS.md).
+
+A seção acadêmica de [Materiais e métodos](docs/15-materiais-e-metodos.md)
+reúne fontes dos dados, partições, técnicas de ML e fluxo de classificação.
+Está disponível também em [Word](docs/materiais-e-metodos.docx).
 
 ## Estrutura
 
@@ -161,6 +188,11 @@ em `predict`/`predict-batch`; o baseline original continua disponível.
 ## Experimento multilíngue SpamShield
 
 O pipeline separado `spamshield` usa o corpus de SMS [M-Arjun/SpamShield-Datasets](https://huggingface.co/datasets/M-Arjun/SpamShield-Datasets), que informa 149.359 mensagens em 23 idiomas e licença CC-BY-4.0. O acesso aos arquivos é gated: entre na sua conta Hugging Face, aceite as condições na página do dataset e autentique a CLI localmente. O código não envia credenciais a terceiros.
+
+Treino/teste concluídos em 2026-11-05: acurácia de teste 97,36%, F1 spam 97,41%;
+em português, 98,41% de acurácia em 189 mensagens. Método, métricas e limitações no
+[registro do experimento](docs/experiments/spamshield-v1.md). São resultados neste
+corpus, sem validação de desempenho no Gmail.
 
 ```powershell
 python -m pip install -e ".[multilingual,dashboard]"

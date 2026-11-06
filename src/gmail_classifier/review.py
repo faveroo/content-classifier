@@ -9,7 +9,7 @@ from .private_storage import private_path, write_private_json
 
 def reviewed_records(collection: dict) -> list[dict]:
     if (not isinstance(collection, dict) or collection.get("format_version") != 1
-            or collection.get("source") != "gmail_reviewed"
+            or collection.get("source") not in {"gmail_reviewed", "email_reviewed"}
             or not isinstance(collection.get("records"), list)):
         raise ValueError("Invalid review collection")
     rows = []
@@ -22,7 +22,7 @@ def reviewed_records(collection: dict) -> list[dict]:
             continue
         if row["human_reviewed"] is not True or row["privacy_reviewed"] is not True:
             raise ValueError("Every included message requires human labeling and privacy review")
-        if row["source"] != "gmail_reviewed":
+        if row["source"] != collection["source"]:
             raise ValueError("Unexpected source")
         rows.append({key: row[key] for key in FIELDS})
     return validate_records(rows, allow_private=True)
@@ -44,7 +44,7 @@ def simulate(collection_path: Path, model_path: Path, output_path: Path) -> list
         raise ValueError("Choose a new simulation output path")
     collection = json.loads(collection_path.read_text(encoding="utf-8"))
     if (not isinstance(collection, dict) or collection.get("format_version") != 1
-            or collection.get("source") != "gmail_reviewed"
+            or collection.get("source") not in {"gmail_reviewed", "email_reviewed"}
             or not isinstance(collection.get("records"), list)):
         raise ValueError("Invalid review collection")
     model = load_model(model_path)

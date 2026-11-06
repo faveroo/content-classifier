@@ -117,3 +117,61 @@ textual exata e split 70/15/15 estratificado por idioma e label. Criar dashboard
 para métricas por idioma e inferência de texto. O corpus é de SMS e não substitui a
 avaliação de e-mail, não treina as categorias da taxonomia existente e não autoriza
 alterar Gmail. Dutch/Italian são spam-only. Atribuir a fonte e registrar transformação.
+
+**Execução em 2026-11-05:** acesso HF local disponível, corpus baixado e pipeline
+existente treinado/testado com seed 42, sem alterar hiperparâmetros. Nesta execução,
+cache explicitamente em `data/hf-cache` (ignorado pelo Git). Publicar somente métricas
+agregadas e identificação da revisão/hash em [SpamShield v1](experiments/spamshield-v1.md);
+dados e modelo permanecem ignorados. Os resultados não promovem o detector para Gmail
+nem substituem a avaliação de e-mail. Nenhum ajuste foi feito usando o teste.
+
+## D013 — Mensagens e e-mails independentes do provedor (2026-11-05)
+
+**Status:** solicitado e implementado. Entrada local por texto/EML/MBOX, sem novas
+integrações ou escrita em caixas. Treinar spam e temas com datasets separados,
+preservando baseline clássico e política conservadora. Canal explícito escolhe
+detector de e-mail ou SMS. Categoria candidata não é label aceita.
+
+Enron-Spam para fit/validação/teste interno por grupos e SpamAssassin para externo;
+remoção de duplicatas/templates/threads sobrepostos antes do split. Falha da origem
+Enron levou ao espelho CSV atribuído a MWiechmann, sem atribuir licença uniforme aos
+textos originais. Corpus/modelo continuam ignorados, relatório agregado versionável.
+
+Treino real de spam executado; teste externo de 44,67% impede alegação de generalização
+confiável. Não ajustar parâmetros usando esse teste. Temas iniciais continuam sintéticos;
+180 e-mails públicos aguardam revisão temática privada. O novo source `email_reviewed`
+permite cobertura parcial explícita no categorizador independente, sem afrouxar o
+contrato humano Gmail anterior. Rótulos de IA exigem opt-in e procedência separados.
+Nova rotulagem de IA não foi presumida. [Guia](13-messages-email.md).
+
+## D014 — Kaggle isuranga como experimento sintético adicional (2026-11-05)
+
+**Status:** solicitado, implementado e treinado/testado. Download público com hash
+e versão; descrição informa 100 mil e-mails sintéticos, licença declarada Apache 2.0.
+Usar apenas assunto/corpo, agrupando antes do split e preservando grupos gigantes.
+Auditar sobreposição ao treino anterior. Mesmo baseline e thresholds; novo artefato,
+comparação nos mesmos textos e diagnóstico externo sem fit. Acerto 100% no sintético
+não comprova qualidade real; externo 68,44% ainda insuficiente e política de falsos
+positivos pior que a anterior. Não promover automaticamente. Labels binários não
+treinam temas. [Registro](experiments/kaggle-isuranga-v1.md).
+
+## D015 — Autonomia para desenvolvimento real, IA e revisão reservada (2026-11-05)
+
+**Status:** o usuário solicitou seguir o roteiro com autonomia. A autorização inclui
+rotulagem experimental de IA, comparação clássica, ajustes por validação e simulação;
+não é confirmação humana. O Gmail continua somente leitura. Consentimento renovado
+pelo usuário após `invalid_grant`; coleta recente de 100 mensagens reservada após
+congelar o modelo, sem usá-las no fit ou no ajuste dos thresholds.
+
+Enron/SpamAssassin observados viram desenvolvimento/diagnóstico. Quarentena de 180
+grupos/965 registros da amostra temática evita vazamento entre estágios. Comparar
+palavras, caracteres e união, selecionar por validação e registrar hashes antes de
+abrir a anotação do teste temático. Avaliação final única; testes consultados passam
+a ser diagnósticos em novas iterações.
+
+Temas reais têm `email_ai_labeled`, sem revisão humana: 149 treino, 45 validação e
+18 de teste avaliáveis (três ambíguos excluídos). A concordância de 33,33% e a falta
+de threshold viável impedem aceitação automática. O registro ativo exige revisão;
+hipóteses condicionais não alteram o modelo congelado. Correções humanas têm fluxo
+independente, atribuição e métricas separadas, sem treino implícito.
+[Guia e limites](14-real-development.md). Artefatos reais completos permanecem privados.

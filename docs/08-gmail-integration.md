@@ -1,5 +1,11 @@
 # Integração com Gmail
 
+Em 2026-11-05, o token anterior retornou `invalid_grant`. O comando explícito
+`gmail-auth` agora permite novo consentimento quando a renovação falha, mantendo o
+token antigo até verificar os novos escopos. A coleta nunca abre o navegador por conta
+própria. O usuário concluiu o consentimento `gmail.readonly`, seguido de coleta privada
+de 100 mensagens recentes para simulação, sem alterações na caixa.
+
 ## Objetivo
 
 Usar a Gmail API oficial para ler mensagens necessárias à classificação e aplicar labels autorizadas.

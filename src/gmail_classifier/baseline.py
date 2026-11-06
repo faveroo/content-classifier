@@ -46,9 +46,13 @@ class Baseline:
         spam_index = list(self.spam.classes_).index(True)
         probability = float(self.spam.predict_proba([text])[0, spam_index])
         known = self.spam.named_steps["tfidf"].transform([text]).nnz > 0
+        if probability >= self.policy.spam_threshold and (self.provenance or {}).get("spam_suggestions_enabled") is False:
+            return self.policy.decide(probability, known_text=False)
         if not known or probability > self.policy.legitimate_threshold:
             return self.policy.decide(probability, known_text=known)
         known_category = self.category.named_steps["tfidf"].transform([text]).nnz > 0
+        if (self.provenance or {}).get("category_suggestions_enabled") is False:
+            known_category = False
         probabilities = self.category.predict_proba([text])[0]
         index = int(probabilities.argmax())
         return self.policy.decide(probability, str(self.category.classes_[index]),
@@ -71,7 +75,7 @@ def train(records: list[dict], policy: Policy | None = None, *, allow_private=Fa
         raise ValueError("Cannot train spam with one class; provide an explicit trusted reference")
     category.fit(texts(legitimate), [r["category"] for r in legitimate])
     provenance = {"spam_source": spam_source, "category_source": records[0]["source"],
-                  "human_gold_labels": records[0]["source"] == "gmail_reviewed"}
+                  "human_gold_labels": records[0]["source"] in {"gmail_reviewed", "email_reviewed"}}
     return Baseline(spam, category, policy or Policy(), provenance)
 
 

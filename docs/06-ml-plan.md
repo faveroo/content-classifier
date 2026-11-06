@@ -83,3 +83,28 @@ O split estratifica idioma × label; reporta métricas gerais e por idioma em tr
 validação e teste. Parâmetros não são escolhidos com base no teste. Nenhum threshold de
 ação Gmail foi alterado. A inferência expõe probabilidades binárias, sem alegação de
 calibração; o modelo não classifica as categorias finas do corpus.
+
+## Classificação independente de mensagens/e-mails
+
+`train-messages` treina TF-IDF de palavras 1–2 + Logistic Regression balanceada
+separadamente: spam no Enron-Spam, temas somente nos legítimos do dataset temático.
+O pipeline clássico existente é preservado. Há opt-in para dados temáticos reais/IA,
+procedência por estágio e avaliação temática isolada e com política. Inicialmente o
+categorizador usa exemplos sintéticos, sem alegação de qualidade real. A seleção de
+canal permite inferência com o detector SMS já treinado, sem misturar corpora ou
+probabilidades. O teste externo ruim impede promoção a automação; nenhum hiperparâmetro
+foi escolhido a partir dele. [Método e operação](13-messages-email.md).
+
+Kaggle isuranga usa o mesmo pipeline em dataset sintético separado, sem ajustar
+thresholds pelo teste. Novo artefato, comparação com Enron nos mesmos textos e
+diagnóstico externo pós-fit separado. Labels binários não ensinam categorias temáticas.
+
+## Desenvolvimento real v2
+
+Comparação clássica de palavras, caracteres e união, com normalização uniforme e
+limites de features. Seleção de spam pelo pior F1 macro de fonte em validação;
+temas pelo F1 macro de validação. Ambos selecionaram caracteres. Policy escolhida
+apenas por validação: spam 0,70, legítimos até 0,30; temas sem threshold viável,
+aceitação desabilitada. Modelos congelados antes da anotação do teste temático.
+Saídas ativas exigem revisão humana independente; SMS preserva política provisória
+própria. Não reutilizar teste observado para novas escolhas. [Método](14-real-development.md).

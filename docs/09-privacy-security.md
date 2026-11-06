@@ -65,3 +65,16 @@ e a inferência do baseline continuam locais, sem chamar um serviço de LLM no c
 Dados derivados, justificativas, scripts específicos da amostra e métricas detalhadas
 permanecem fora do Git. Não declarar revisão humana de privacidade onde houve apenas
 minimização assistida pela IA, que não garante anonimização completa.
+
+EML/MBOX e mensagens de qualquer provedor seguem a mesma proteção: coleções para
+revisão e derivados temáticos reais fora de árvores Git. Importação não confirma
+revisão nem faz chamadas de rede. Texto de HTML é extraído sem renderização ou
+carregamento de recursos. Corpora públicos brutos, datasets e modelos ficam ignorados;
+somente métricas agregadas são publicadas. O formulário e a nova CLI não alteram caixas.
+
+No real-v2, anotações, modelos, coletas e relatórios completos ficam em armazenamento
+privado. O registro ativo verifica o hash do modelo e a camada operacional exige
+revisão para todas as hipóteses. As coleções humanas permanecem sem labels/flags
+preenchidas pela IA. `experiment_v2 view` é uma ferramenta de leitura para anotação
+autorizada: sua saída contém texto minimizado privado e não deve ser publicada como log.
+O painel fica em loopback; nenhum artefato privado foi enviado a hospedagem externa.
