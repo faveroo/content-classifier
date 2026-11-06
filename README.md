@@ -1,4 +1,4 @@
-# Gmail Email Classifier
+# Content Classifier
 
 Projeto experimental de classificação de mensagens e e-mails em Python, independente do provedor, com integração Gmail opcional.
 
